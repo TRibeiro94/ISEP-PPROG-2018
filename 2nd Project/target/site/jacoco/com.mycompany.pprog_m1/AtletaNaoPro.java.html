@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AtletaNaoPro.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pprog_M1</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.pprog_m1</a> &gt; <span class="el_source">AtletaNaoPro.java</span></div><h1>AtletaNaoPro.java</h1><pre class="source lang-java linenums">package com.mycompany.pprog_m1;
+
+/**
+ *
+ * @author Pedro Água (1180809)
+ * @author Tiago Soares (1181444)
+ */
+public abstract class AtletaNaoPro extends Atleta {
+
+    /**
+     * Antiguidade do atleta no clube desportivo (&quot;anos de casa&quot;)
+     */
+    private int antiguidade;
+    /**
+     * Antiguidade do atleta no clube desportivo por omissão
+     */
+    private static final int ANTIGUIDADE_POR_OMISSAO = 0;
+    /**
+     * Antiguidade de 5 anos do Atleta no Clube Desportivo
+     */
+    private static final int ANTIGUIDADE_CINCO = 5;
+    /**
+     * Antiguidade de 10 anos do Atleta no Clube Desportivo
+     */
+    private static final int ANTIGUIDADE_DEZ = 10;
+    /**
+     * Antiguidade de 20 anos do Atleta no Clube Desportivo
+     */
+    private static final int ANTIGUIDADE_VINTE = 20;
+
+    /**
+     * Constrói uma instância de AtletaNaoPro que recebe nome, número de
+     * identificação civil, género, idade atividade desportiva, FCR,valor
+     * arrecadado em prémios e antiguidade do atleta no clube
+     *
+     * @param nome Nome do atleta
+     * @param numCC Número de Identificação civil do atleta
+     * @param genero Género do atleta
+     * @param idade Idade do atleta
+     * @param atividade Atividade desportiva do atleta
+     * @param FCR Frequência Cardíaca em Repouso do atleta
+     * @param valorMensal Valor arrecadado em prémios pelo Atleta
+     * @param antiguidade Antiguidade no clube do atleta
+     */
+    public AtletaNaoPro(String nome, int numCC, String genero, int idade, String atividade, int FCR, double valorMensal, int antiguidade) {
+<span class="fc" id="L46">        super(nome, numCC, genero, idade, atividade, FCR, valorMensal);</span>
+<span class="fc" id="L47">        this.antiguidade = antiguidade;</span>
+<span class="fc" id="L48">    }</span>
+    /**
+     * Constrói uma instância de AtletaNaoPro que é cópia de uma instância AtletaNaoPro passada por parâmetro
+     *
+     * @param outroAtletaNaoPro AtletaNaoPro que vai ser 'copiado'
+     */
+    public AtletaNaoPro(AtletaNaoPro outroAtletaNaoPro) {
+<span class="nc" id="L55">        super(outroAtletaNaoPro);</span>
+<span class="nc" id="L56">        antiguidade = outroAtletaNaoPro.antiguidade;</span>
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * Constrói uma instância de AtletaNaoPro com valores por omissão
+     */
+    public AtletaNaoPro() {
+<span class="nc" id="L63">        super();</span>
+<span class="nc" id="L64">        antiguidade = ANTIGUIDADE_POR_OMISSAO;</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Devolve a antiguidade do atleta no clube
+     *
+     * @return antiguidade do atleta no clube
+     */
+    public int getAntiguidade() {
+<span class="fc" id="L73">        return antiguidade;</span>
+    }
+
+    /**
+     * Modifica a antiguidade do atleta no clube
+     *
+     * @param antiguidade antiguidade do atleta no clube
+     */
+    public void setAntiguidade(int antiguidade) {
+<span class="nc" id="L82">        this.antiguidade = antiguidade;</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Devolve as características do atleta não profissional, assim como a sua
+     * antiguidade no clube
+     *
+     * @return características do atleta não profissional, assim como a sua
+     * antiguidade no clube
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L94">        return String.format(&quot;%s - Atleta Não Profissional com %d anos de casa.&quot;,super.toString(), antiguidade);</span>
+    }
+
+    /**
+     * Calcula o valor a pagar ao atleta Método abstrato, apenas identificado, a
+     * ser implementado pelas subclasses
+     *
+     * @return valor a pagar ao atleta
+     */
+    @Override
+    public abstract double calcularPagamento();
+
+    /**
+     * Calcula a parcela variável de vencimento do atleta
+     *
+     * @return parcela variável de vencimento
+     */
+    public double calcularParcelaVariavel() {
+<span class="pc bpc" id="L112" title="1 of 4 branches missed.">        if (getAntiguidade() &gt;= ANTIGUIDADE_CINCO &amp;&amp; getAntiguidade() &lt;= ANTIGUIDADE_DEZ) {</span>
+<span class="fc" id="L113">            return getValorMensal() * 0.02;</span>
+<span class="pc bpc" id="L114" title="1 of 4 branches missed.">        } else if (getAntiguidade() &gt; ANTIGUIDADE_DEZ &amp;&amp; getAntiguidade() &lt;= ANTIGUIDADE_VINTE) {</span>
+<span class="fc" id="L115">            return getValorMensal() * 0.08;</span>
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">        } else if (getAntiguidade() &gt; ANTIGUIDADE_VINTE) {</span>
+<span class="fc" id="L117">            return getValorMensal() * 0.2;</span>
+        } else {
+<span class="nc" id="L119">            System.out.println(&quot;Antiguidade não está nos devidos parâmetros.&quot;);</span>
+        }
+<span class="nc" id="L121">        return 0;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

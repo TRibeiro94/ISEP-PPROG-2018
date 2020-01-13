@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Atleta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pprog_M1</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.pprog_m1</a> &gt; <span class="el_source">Atleta.java</span></div><h1>Atleta.java</h1><pre class="source lang-java linenums">package com.mycompany.pprog_m1;
+
+/**
+ * Representa um Atleta de um Clube Desportivo
+ *
+ * @author Pedro Água (1180809)
+ * @author Tiago Soares (1181444)
+ */
+public abstract class Atleta implements Comparable&lt;Atleta&gt; {
+
+    /**
+     * Nome do Atleta
+     */
+    private String nome;
+    /**
+     * Número de Identificação Civil do Atleta
+     */
+    private int numCC;
+    /**
+     * Género do Atleta
+     */
+    private String genero;
+    /**
+     * Idade do Atleta
+     */
+    private int idade;
+    /**
+     * Atividade desportiva do Atleta
+     */
+    private String atividade;
+    /**
+     * Frequência Cardíaca em Repouso do Atleta
+     */
+    private int FCR;
+    /**
+     * Valor arrecadado em prémios pelo Atleta
+     */
+    private double valorMensal;
+
+    /**
+     * Nome do Atleta por omissão
+     */
+    private static final String NOME_POR_OMISSAO = &quot;sem nome&quot;;
+    /**
+     * Número de Identificação Civil do Atleta por omissão
+     */
+    private static final int NUMCC_POR_OMISSAO = 0;
+    /**
+     * Género do Atleta por omissão
+     */
+    private static final String GENERO_POR_OMISSAO = &quot;sem género&quot;;
+    /**
+     * Idade do Atleta por omissão
+     */
+    private static final int IDADE_POR_OMISSAO = 0;
+    /**
+     * Atividade desportiva do Atleta por omissão
+     */
+    private static final String ATIVIDADE_POR_OMISSAO = &quot;sem atividade definida&quot;;
+    /**
+     * Frequência Cardíaca em Repouso do Atleta por omissão
+     */
+    private static final int FCR_POR_OMISSAO = 1;
+    /**
+     * Valor arrecadado em prémios pelo Atleta por omissão
+     */
+    private static final int VALOR_MENSAL_POR_OMISSAO = 0;
+
+    /**
+     * Intensidade de Treino (Objectivo: queima de gordura)
+     */
+    private static final double ITQUEIMA = 0.6;
+    /**
+     * Intensidade de Treino (Objectivo: trabalhar capacidade
+     * cardiorespiratória)
+     */
+    private static final double ITCARDIO = 0.75;
+    /**
+     * Atividade associada a um atleta: caminhada
+     */
+    private static final String CAMINHADA = &quot;caminhada&quot;;
+    /**
+     * Atividade associada a um atleta: corrida
+     */
+    private static final String CORRIDA = &quot;corrida&quot;;
+    /**
+     * Atividade associada a um atleta: natação
+     */
+    private static final String NATACAO = &quot;natação&quot;;
+    /**
+     * Atividade associada a um atleta: ciclismo
+     */
+    private static final String CICLISMO = &quot;ciclismo&quot;;
+    /**
+     * género masculino
+     */
+    private static final String MASCULINO = &quot;masculino&quot;;
+    /**
+     * género feminino
+     */
+    private static final String FEMININO = &quot;feminino&quot;;
+    /**
+     * Constrói uma instância de Atleta que recebe nome, número de identificação
+     * civil, género, idade atividade desportiva, FCR e valor arrecadado em
+     * prémios
+     *
+     * @param nome Nome do atleta
+     * @param numCC Número de Identificação civil do atleta
+     * @param genero Género do atleta
+     * @param idade Idade do atleta
+     * @param atividade Atividade desportiva do atleta
+     * @param FCR Frequência Cardíaca em Repouso do atleta
+     * @param valorMensal Valor arrecadado em prémios pelo Atleta
+     */
+<span class="fc" id="L115">    public Atleta(String nome, int numCC, String genero, int idade, String atividade, int FCR, double valorMensal) {</span>
+<span class="fc" id="L116">        this.nome = nome;</span>
+<span class="fc" id="L117">        this.numCC = numCC;</span>
+<span class="fc" id="L118">        this.genero = genero;</span>
+<span class="fc" id="L119">        this.idade = idade;</span>
+<span class="fc" id="L120">        this.atividade = atividade;</span>
+<span class="fc" id="L121">        this.FCR = FCR;</span>
+<span class="fc" id="L122">        this.valorMensal = valorMensal;</span>
+<span class="fc" id="L123">    }</span>
+    /**
+     * Constrói uma instância de Atleta que é cópia de uma instância Atleta passada por parâmetro
+     *
+     * @param outroAtleta Atleta que vai ser 'copiado'
+     */
+<span class="nc" id="L129">    public Atleta(Atleta outroAtleta) {</span>
+<span class="nc" id="L130">      nome = outroAtleta.nome;</span>
+<span class="nc" id="L131">      numCC = outroAtleta.numCC;</span>
+<span class="nc" id="L132">      genero = outroAtleta.genero;</span>
+<span class="nc" id="L133">      idade = outroAtleta.idade;</span>
+<span class="nc" id="L134">      atividade = outroAtleta.atividade;</span>
+<span class="nc" id="L135">      FCR = outroAtleta.FCR;</span>
+<span class="nc" id="L136">      valorMensal = outroAtleta.valorMensal;</span>
+<span class="nc" id="L137">    }</span>
+
+    /**
+     * Constrói uma instância de Atleta com valores por omissão
+     */
+<span class="nc" id="L142">    public Atleta() {</span>
+<span class="nc" id="L143">        nome = NOME_POR_OMISSAO;</span>
+<span class="nc" id="L144">        numCC = NUMCC_POR_OMISSAO;</span>
+<span class="nc" id="L145">        genero = GENERO_POR_OMISSAO;</span>
+<span class="nc" id="L146">        idade = IDADE_POR_OMISSAO;</span>
+<span class="nc" id="L147">        atividade = ATIVIDADE_POR_OMISSAO;</span>
+<span class="nc" id="L148">        FCR = FCR_POR_OMISSAO;</span>
+<span class="nc" id="L149">        valorMensal = VALOR_MENSAL_POR_OMISSAO;</span>
+<span class="nc" id="L150">    }</span>
+
+    /**
+     * Devolve o nome do atleta
+     *
+     * @return nome do atleta
+     */
+    public String getNome() {
+<span class="nc" id="L158">        return nome;</span>
+    }
+
+    /**
+     * Devolve o número de identificação civil do atleta
+     *
+     * @return número de identificação civil do atleta
+     */
+    public int getNumCC() {
+<span class="nc" id="L167">        return numCC;</span>
+    }
+
+    /**
+     * Devolve o género do atleta
+     *
+     * @return género do atleta
+     */
+    public String getGenero() {
+<span class="nc" id="L176">        return genero;</span>
+    }
+
+    /**
+     * Devolve a idade atleta
+     *
+     * @return idade do atleta
+     */
+    public int getIdade() {
+<span class="nc" id="L185">        return idade;</span>
+    }
+
+    /**
+     * Devolve a atividade desportiva do atleta
+     *
+     * @return atividade do atleta
+     */
+    public String getAtividade() {
+<span class="nc" id="L194">        return atividade;</span>
+    }
+
+    /**
+     * Devolve a frequência cardíaca em repouso do atleta
+     *
+     * @return FCR do atleta
+     */
+    public int getFCR() {
+<span class="nc" id="L203">        return FCR;</span>
+    }
+
+    /**
+     * Devolve o valor em prémios arrecadados pelo atleta
+     *
+     * @return valor em prémios do atleta
+     */
+    public double getValorMensal() {
+<span class="fc" id="L212">        return valorMensal;</span>
+    }
+
+    /**
+     * Modifica o nome do atleta
+     *
+     * @param nome nome do atleta
+     */
+    public void setNome(String nome) {
+<span class="nc" id="L221">        this.nome = nome;</span>
+<span class="nc" id="L222">    }</span>
+
+    /**
+     * Modifica o número de identificação civil do atleta
+     *
+     * @param numCC número de identificação civil do atleta
+     */
+    public void setNumCC(int numCC) {
+<span class="nc" id="L230">        this.numCC = numCC;</span>
+<span class="nc" id="L231">    }</span>
+
+    /**
+     * Modifica o género do atleta
+     *
+     * @param genero género do atleta
+     */
+    public void setGenero(String genero) {
+<span class="nc" id="L239">        this.genero = genero;</span>
+<span class="nc" id="L240">    }</span>
+
+    /**
+     * Modifica a idade do atleta
+     *
+     * @param idade idade do atleta
+     */
+    public void setIdade(int idade) {
+<span class="nc" id="L248">        this.idade = idade;</span>
+<span class="nc" id="L249">    }</span>
+
+    /**
+     * Modifica a atividade desportiva do atleta
+     *
+     * @param atividade atividade desportiva do atleta
+     */
+    public void setAtividade(String atividade) {
+<span class="nc" id="L257">        this.atividade = atividade;</span>
+<span class="nc" id="L258">    }</span>
+
+    /**
+     * Modifica a frequência cardíaca em repouso do atleta
+     *
+     * @param FCR frequência cardíaca em repouso
+     */
+    public void setFCR(int FCR) {
+<span class="nc" id="L266">        this.FCR = FCR;</span>
+<span class="nc" id="L267">    }</span>
+
+    /**
+     * Modifica o valor mensal em prémios arrecadado pelo atleta
+     *
+     * @param valorMensal valor arrecadado em prémios
+     */
+    public void setValorMensal(double valorMensal) {
+<span class="nc" id="L275">        this.valorMensal = valorMensal;</span>
+<span class="nc" id="L276">    }</span>
+
+    /**
+     * Devolve as características do atleta
+     *
+     * @return características do atleta
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L285">        return String.format(&quot;Atleta: %s ; Número Identificação: %d ; Sexo: %s ; &quot;</span>
+<span class="nc" id="L286">                + &quot;Idade: %d ; Atividade Desportiva: %s&quot;, nome, numCC, genero, idade, atividade);</span>
+    }
+
+    /**
+     * Calcula o valor a pagar ao atleta Método abstrato, apenas identificado, a
+     * ser implementado pelas subclasses
+     *
+     * @return valor a pagar ao atleta
+     */
+    public abstract double calcularPagamento();
+
+    /**
+     * Calcula a frequência cardíaca máxima do atleta
+     *
+     * @return valor da frequência cardíaca máxima
+     */
+     public double calcularFCM() {
+<span class="nc bnc" id="L303" title="All 4 branches missed.">         if (atividade.equalsIgnoreCase(CAMINHADA) || atividade.equalsIgnoreCase(CORRIDA)) {</span>
+<span class="nc" id="L304">             return 208.75 - (0.73 * (idade));</span>
+<span class="nc bnc" id="L305" title="All 4 branches missed.">         } else if (atividade.equalsIgnoreCase(CICLISMO) &amp;&amp; genero.equalsIgnoreCase(MASCULINO)) {</span>
+<span class="nc" id="L306">             return 189 - (0.56 * (idade));</span>
+<span class="nc bnc" id="L307" title="All 4 branches missed.">         } else if (atividade.equalsIgnoreCase(CICLISMO) &amp;&amp; genero.equalsIgnoreCase(FEMININO)) {</span>
+<span class="nc" id="L308">             return 202 - (0.72 * (idade));</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">         } else if (atividade.equalsIgnoreCase(NATACAO)) {</span>
+<span class="nc" id="L310">             return 204 - (1.7 * (idade));</span>
+         }
+<span class="nc" id="L312">         return 0;</span>
+     }
+
+    /**
+     * Calcula a frequência cardíaca de trabalho do atleta (Objectivo: queima de
+     * gordura)
+     *
+     * @return valor da FCT caso o objectivo seja queima de gordura
+     */
+    public double calcularFCTQueima() {
+<span class="nc" id="L322">        return FCR + (ITQUEIMA * (calcularFCM() - FCR));</span>
+    }
+
+    /**
+     * Calcula a frequência cardíaca de trabalho do atleta (Objectivo: trabalhar
+     * capacidade cardiorespiratória)
+     *
+     * @return valor da FCT caso o objectivo seja trabalhar capacidade
+     * cardiorespiratória
+     */
+    public double calcularFCTcapCardio() {
+<span class="nc" id="L333">        return FCR + (ITCARDIO * (calcularFCM() - FCR));</span>
+    }
+
+    /**
+     * Devolve o valor da percentagem de intensidade do treino para queima de
+     * gordura
+     *
+     * @return percentagem de intensidade do treino para queima de gordura
+     */
+    public double getITQUEIMA() {
+<span class="nc" id="L343">        return ITQUEIMA;</span>
+    }
+
+    /**
+     * Devolve o valor da percentagem de intensidade do treino para trabalhar
+     * capacidade cardiorespiratória
+     *
+     * @return percentagem de intensidade do treino para trabalhar capacidade
+     * cardiorespiratória
+     */
+    public double getITCARDIO() {
+<span class="nc" id="L354">        return ITCARDIO;</span>
+    }
+
+    /**
+     * Ordena alfabeticamente os atletas, comparando os seus nomes.
+     *
+     * @param outroAtleta Segundo atleta ao qual o primeir vai ser comparado.
+     * @return int positivo caso um seja maior, 0 se for igual ou negativo se
+     * for menor.
+     */
+    @Override
+    public int compareTo(Atleta outroAtleta) {
+<span class="fc" id="L366">      return this.nome.compareToIgnoreCase(outroAtleta.nome);</span>
+     }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

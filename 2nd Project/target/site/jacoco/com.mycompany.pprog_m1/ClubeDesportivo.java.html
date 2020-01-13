@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClubeDesportivo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pprog_M1</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.pprog_m1</a> &gt; <span class="el_source">ClubeDesportivo.java</span></div><h1>ClubeDesportivo.java</h1><pre class="source lang-java linenums">package com.mycompany.pprog_m1;
+
+/**
+ * Representa um Clube Desportivo
+ *
+ * @author Pedro Água (1180809)
+ * @author Tiago Soares (1181444)
+ */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import org.dei.biblioteca.Data;
+
+public class ClubeDesportivo {
+    /**
+    * Nome do Clube Desportivo
+    */
+    private String nomeClube;
+    /**
+    * Data da fundação do Clube Desportivo
+    */
+    private Data dataFundacao;
+    /**
+     * Contentor de objetos que irá armazenar os Atletas (&quot;balneário&quot;)
+     */
+<span class="fc" id="L27">    private List&lt;Atleta&gt; listaAtletas = new ArrayList&lt;&gt;();</span>
+    /**
+     * Nome do Clube Desportivo por omissão
+     */
+    private static final String NOMECLUBE_POR_OMISSAO = &quot;sem nome&quot;;
+    /**
+     * Constrói uma instância de um Clube Desportivo que recebe nome e data de fundação
+     *
+     * @param nomeClube Nome do clube
+     * @param dataFundacao Data de fundação do clube
+     */
+<span class="fc" id="L38">    public ClubeDesportivo(String nomeClube, Data dataFundacao) {</span>
+<span class="fc" id="L39">        this.nomeClube = nomeClube;</span>
+<span class="fc" id="L40">        this.dataFundacao = new Data(dataFundacao);</span>
+<span class="fc" id="L41">    }</span>
+    /**
+     * Constrói uma instância de um Clube Desportivo com valores por omissão
+     */
+<span class="fc" id="L45">    public ClubeDesportivo() {</span>
+<span class="fc" id="L46">        nomeClube = NOMECLUBE_POR_OMISSAO;</span>
+<span class="fc" id="L47">        dataFundacao = new Data();</span>
+<span class="fc" id="L48">    }</span>
+    /**
+     * Devolve o nome do clube desportivo
+     *
+     * @return nome do clube desportivo
+     */
+    public String getNomeClube() {
+<span class="fc" id="L55">        return nomeClube;</span>
+    }
+    
+    /**
+     * Modifica o nome do clube
+     *
+     * @param nome do clube
+    */
+    public void setNomeClube(String nome) {
+<span class="nc" id="L64">        this.nomeClube = nome;</span>
+<span class="nc" id="L65">    }</span>
+    /**
+     * Devolve a data de fundação do clube desportivo
+     * 
+     * @return data de fundação do clube
+     */
+    public Data getData(){
+<span class="nc" id="L72">        return dataFundacao;</span>
+    }
+    /**
+     * Modifica a data de fundação do clube
+     * 
+     * @param data data de fundação do clube
+     */
+    public void setData(Data data){
+<span class="nc" id="L80">        this.dataFundacao.setData(data.getAno(), data.getMes(), data.getDia());;</span>
+<span class="nc" id="L81">    }</span>
+    /**
+     * Devolve a lista de atletas do clube desportivo
+     * 
+     * @return lista de atletas
+     */
+    public List&lt;Atleta&gt; getListaAtletas(){
+<span class="fc" id="L88">        return listaAtletas;</span>
+    }
+
+    /**
+     * Adiciona um atleta ao contentor de atletas da instância ClubeDesportivo
+     *
+     * @param atleta atleta que vai ser adicionado ao Clube
+     */
+    public void adicionarAtleta(Atleta atleta) {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (atleta instanceof AtletaPro) {</span>
+<span class="fc" id="L98">            AtletaPro novoAtleta = (AtletaPro) atleta;</span>
+<span class="fc" id="L99">            listaAtletas.add(novoAtleta);</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        } else if (atleta instanceof AtletaSemi) {</span>
+<span class="fc" id="L101">            AtletaSemi novoAtleta = (AtletaSemi) atleta;</span>
+<span class="fc" id="L102">            listaAtletas.add(novoAtleta);</span>
+<span class="pc bnc" id="L103" title="All 2 branches missed.">        } else if (atleta instanceof AtletaAmador) {</span>
+<span class="nc" id="L104">            AtletaAmador novoAtleta = (AtletaAmador) atleta;</span>
+<span class="nc" id="L105">            listaAtletas.add(novoAtleta);</span>
+        }
+<span class="fc" id="L107">    }</span>
+
+    /**
+     * Imprime a lista com os nomes dos atletas do clube.
+     */
+    public void listarAtletas() {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        for (Atleta atleta : listaAtletas) {</span>
+<span class="nc" id="L114">            System.out.println(&quot;Nome: &quot; + atleta.getNome());</span>
+<span class="nc" id="L115">        }</span>
+<span class="nc" id="L116">    }</span>
+    /**
+     * Imprime a lista de atletas do clube, com categoria, modalidade e nome
+     */
+    public void listarAtletasDetalhado() {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for (Atleta atleta : listaAtletas) {</span>
+<span class="nc" id="L122">            System.out.printf(&quot;\n%s; %s; %s.&quot;, atleta.getClass().getSimpleName(), atleta.getAtividade(), atleta.getNome());</span>
+<span class="nc" id="L123">            System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L124">        }</span>
+<span class="nc" id="L125">    }</span>
+    /**
+     * Lista os os nomes e valores em prémios respetivos, de todos os atletas do clube.
+     */
+    public void listarValorMensalPremios() {
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        for (Atleta atleta : listaAtletas) {</span>
+<span class="nc" id="L131">            System.out.printf(&quot;\nNome: %s ; Valor de Prémios: %.2f€.&quot;, atleta.getNome(), atleta.getValorMensal());</span>
+<span class="nc" id="L132">        }</span>
+<span class="nc" id="L133">    }</span>
+    /**
+     * Ordena por ordem alfabética o contentor de atletas.
+     */
+    public void ordenarAtletasNome() {
+<span class="fc" id="L138">        Collections.sort(listaAtletas);</span>
+<span class="fc" id="L139">    }</span>
+    /**
+     * Ordena os atletas pela ordem inversa dos seus valores em prémios recebidos.
+     * (mais alto em € para o mais baixo)
+     */
+    public void ordenarValorMensalInverso(){
+<span class="nc" id="L145">      Comparator&lt;Atleta&gt; criterioMensal = new Comparator&lt;Atleta&gt;(){</span>
+        @Override
+        public int compare(Atleta atleta1, Atleta atleta2){
+<span class="nc" id="L148">          return (int) (atleta2.getValorMensal() - atleta1.getValorMensal());</span>
+        }
+      };
+<span class="nc" id="L151">      Collections.sort(listaAtletas, criterioMensal);</span>
+<span class="nc" id="L152">    };</span>
+    /**
+     * Ordena os atletas do clube por ordem alfabética, da sua categoria, atividade e o seu nome.
+     */
+    public void ordenarAlfaCatModalidadeNome() {
+<span class="nc" id="L157">        Comparator&lt;Atleta&gt; multiCriterios = new Comparator&lt;Atleta&gt;() {</span>
+            @Override
+            public int compare(Atleta atleta1, Atleta atleta2) {
+<span class="nc bnc" id="L160" title="All 2 branches missed.">                if (atleta1.getClass() == atleta2.getClass()) {</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">                    if (atleta1.getAtividade() == atleta2.getAtividade()) {</span>
+<span class="nc" id="L162">                        return atleta1.getNome().compareToIgnoreCase(atleta2.getNome());</span>
+                    } else {
+<span class="nc" id="L164">                        return atleta1.getAtividade().compareToIgnoreCase(atleta2.getAtividade());</span>
+                    }
+                } else {
+<span class="nc" id="L167">                    return obterCategoria(atleta1).compareToIgnoreCase(obterCategoria(atleta2));</span>
+                }
+            }
+        };
+
+<span class="nc" id="L172">        Collections.sort(listaAtletas, multiCriterios);</span>
+<span class="nc" id="L173">    }</span>
+    /**
+     * Obtém a categoria do atleta.
+     *
+     * @param atleta atleta sobre o qual se vai obter a categoria
+     * @return categoria do atleta que é passado por parâmetro
+     */
+    private String obterCategoria(Atleta atleta) {
+<span class="nc" id="L181">        return atleta.getClass().getName();</span>
+    }
+    /**
+     * Obtém o valor total de descontos para todos os atletas profissionais e semi do clube.
+     *
+     * @return totalIRS valor de desconto
+     */
+    public double obterTotalDescontos() {
+<span class="nc" id="L189">        double totalIRS = 0;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        for (Atleta atleta : listaAtletas) {</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (atleta instanceof AtletaPro) {</span>
+<span class="nc" id="L192">                totalIRS += ((AtletaPro) atleta).valorDoDesconto();</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            } else if (atleta instanceof AtletaSemi) {</span>
+<span class="nc" id="L194">                totalIRS += ((AtletaSemi) atleta).valorDoDesconto();</span>
+            }
+<span class="nc" id="L196">        }</span>
+<span class="nc" id="L197">        return totalIRS;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

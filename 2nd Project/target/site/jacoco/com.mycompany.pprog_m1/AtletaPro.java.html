@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AtletaPro.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pprog_M1</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.pprog_m1</a> &gt; <span class="el_source">AtletaPro.java</span></div><h1>AtletaPro.java</h1><pre class="source lang-java linenums">package com.mycompany.pprog_m1;
+
+/**
+ *
+ * @author Pedro Água (1180809)
+ * @author Tiago Soares (1181444)
+ */
+public class AtletaPro extends Atleta implements DescontoIRS {
+
+    /**
+     * parcela fixa de vencimento atribuída a atletas profissionais
+     */
+    private double parcelaFixa;
+    /**
+     * parcela fixa de vencimento atribuída a atletas profissionais por omissão
+     */
+    private static final double PARCELA_FIXA_POR_OMISSAO = 0;
+    /**
+     * percentagem dos valores em prémios arrecadados (20%)
+     */
+<span class="fc" id="L21">    private static double VALORPERCENTAGEM = 0.2;</span>
+
+    /**
+     * Constrói uma instância de AtletaPro que recebe nome, número de
+     * identificação civil, género, idade atividade desportiva, parcela fixa de
+     * vencimento, FCR e valor arrecadado em prémios
+     *
+     * @param nome Nome do atleta
+     * @param numCC Número de Identificação civil do atleta
+     * @param genero Género do atleta
+     * @param idade Idade do atleta
+     * @param atividade Atividade desportiva do atleta
+     * @param parcelaFixa parcela fixa de vencimento do atleta
+     * @param FCR Frequência Cardíaca em Repouso do atleta
+     * @param valorMensal Valor arrecadado em prémios pelo Atleta
+     */
+    public AtletaPro(String nome, int numCC, String genero, int idade, String atividade, int FCR, int parcelaFixa, double valorMensal) {
+<span class="fc" id="L38">        super(nome, numCC, genero, idade, atividade, FCR, valorMensal);</span>
+<span class="fc" id="L39">        this.parcelaFixa = parcelaFixa;</span>
+<span class="fc" id="L40">    }</span>
+    /**
+     * Constrói uma instância de AtletaPro que é cópia de uma instância AtletaPro passada por parâmetro
+     *
+     * @param outroAtletaPro AtletaPro que vai ser 'copiado'
+     */
+    public AtletaPro(AtletaPro outroAtletaPro) {
+<span class="nc" id="L47">        super(outroAtletaPro);</span>
+<span class="nc" id="L48">        parcelaFixa = outroAtletaPro.parcelaFixa;</span>
+<span class="nc" id="L49">    }</span>
+
+    /**
+     * Constrói uma instância de AtletaPro com valores por omissão
+     */
+    public AtletaPro() {
+<span class="nc" id="L55">        super();</span>
+<span class="nc" id="L56">        parcelaFixa = PARCELA_FIXA_POR_OMISSAO;</span>
+<span class="nc" id="L57">    }</span>
+
+    /**
+     * Devolve o valor da parcela fixa de vencimento do atleta
+     *
+     * @return valor do vencimento fixo do atleta
+     */
+    public double getParcelaFixa() {
+<span class="nc" id="L65">        return parcelaFixa;</span>
+    }
+
+    /**
+     * Modifica o valor da parcela fixa de vencimento do atleta
+     *
+     * @param parcelaFixa valor do vencimento fixo do atleta
+     */
+    public void setParcelaFixa(double parcelaFixa) {
+<span class="nc" id="L74">        this.parcelaFixa = parcelaFixa;</span>
+<span class="nc" id="L75">    }</span>
+
+    /**
+     * Devolve as características do atleta profissional, assim como o seu
+     * vencimento
+     *
+     * @return características do atleta profissional, assim como o seu
+     * vencimento
+     */
+    @Override
+    public String toString() {
+<span class="nc" id="L86">        return String.format(&quot;%s - Atleta Profissional&quot;,super.toString());</span>
+    }
+
+    /**
+     * Calcula o valor a pagar a atleta
+     *
+     * @return valor a pagar ao atleta
+     */
+    @Override
+    public double calcularPagamento() {
+<span class="fc" id="L96">        return calcularParcelaVariavel() + parcelaFixa - valorDoDesconto();</span>
+    }
+
+    /**
+     * Calcula a parcela variável de vencimento do atleta
+     *
+     * @return parcela variável de vencimento
+     */
+    public double calcularParcelaVariavel() {
+<span class="fc" id="L105">        return getValorMensal() * VALORPERCENTAGEM;</span>
+    }
+
+    /**
+     * Calcula o valor do doesconto, incidente sobre a parcela fixa, destinado ao IRS
+     *
+     * @return valor do doesconto destinado ao IRS
+     */
+    @Override
+    public double valorDoDesconto() {
+<span class="fc" id="L115">        return parcelaFixa * taxaImutavelIRS;</span>
+    }
+
+    /**
+     * Devolve a percentagem de valores em prémios
+     *
+     * @return valor da percentagem de valores em prémios
+     */
+    public double getValorPercentagem() {
+<span class="nc" id="L124">        return VALORPERCENTAGEM;</span>
+    }
+    /**
+     * Modifica o valor da percentagem da aplicar sobre o valor mensal do atleta
+     *
+     * @param VALORPERCENTAGEM valor da percentagem a aplicar sobre um valor mensal
+     */
+    public void setValorPercentagem(double VALORPERCENTAGEM) {
+<span class="nc" id="L132">        this.VALORPERCENTAGEM = VALORPERCENTAGEM;</span>
+<span class="nc" id="L133">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
