@@ -6,4 +6,4 @@ Os enunciados estão na pasta chamada 'Statements'.
 
 ------------------
 
-####### 1º ano, 2º semestre
+1º ano, 2º semestre
