@@ -1,2 +1,7 @@
 # ISEP-PPROG-2018
-Resolution of PPROG unit course projects.
+
+Resolução dos trabalhos práticos e do projeto final da unidade curricular Paradigmas da Programação.
+
+Os enunciados estão na pasta chamada 'Statements'.
+
+
