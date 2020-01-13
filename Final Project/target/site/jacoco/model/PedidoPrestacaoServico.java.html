@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PedidoPrestacaoServico.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">PedidoPrestacaoServico.java</span></div><h1>PedidoPrestacaoServico.java</h1><pre class="source lang-java linenums">package model;
+
+import Utils.Data;
+import Utils.Tempo;
+import java.io.Serializable;
+import java.util.Objects;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class PedidoPrestacaoServico implements Serializable{
+    
+    /**
+     * número atribuido ao pedido (&quot;senha&quot;)
+     */
+    private int numeroAtribuido;
+    /**
+     * serviço solicitado pelo pedido
+     */
+    private Servico servico;
+    /**
+     * Data solicitada para execução do serviço
+     */
+    private Data data;
+    /**
+     * hora de início do serviço
+     */
+    private Tempo horaInicio;
+    /**
+     * hora de fim do serviço
+     */
+    private Tempo horaFim;
+    /**
+     * descrição da tarefa a ser executada
+     */
+    private String descTarefa;
+    /**
+     * Valor(€) a pagar no total pelo pedido efetuado
+     */
+    private double valorTotal;
+    /**
+     * endereço postal onde o pedido deve ser executado
+     */
+    private EnderecoPostal endPostal;
+    
+    /**
+     * serviço solicitado pelo pedido por omissão
+     */
+<span class="fc" id="L50">    private static final Servico SERVICO_POR_OMISSAO = new Servico();</span>
+    /**
+     * Data solicitada para execução do serviço por omissão
+     */
+<span class="fc" id="L54">    private static final Data DATA_POR_OMISSAO = new Data();</span>
+    /**
+     * hora de início do serviço por omissão
+     */
+<span class="fc" id="L58">    private static final Tempo HORA_INICIO_POR_OMISSAO = new Tempo();</span>
+    /**
+     * hora de fim do serviço por omissão
+     */
+<span class="fc" id="L62">    private static final Tempo HORA_FIM_POR_OMISSAO = new Tempo();</span>
+    /**
+     * descrição da tarefa a ser executada por omissão
+     */
+    private static final String DESC_TAREFA_POR_OMISSAO = &quot;sem descrição disponível&quot;;
+    /**
+     * Valor(€) a pagar no total pelo pedido efetuado por omissão
+     */
+    private static final double VALOR_TOTAL_POR_OMISSAO = 0;
+    /**
+     * endereço postal onde o pedido deve ser executado por omissão
+     */
+<span class="fc" id="L74">    private static final EnderecoPostal ENDERECO_POR_OMISSAO = new EnderecoPostal();</span>
+    
+    /**
+     * número atribuido ao pedido (&quot;senha&quot;)
+     */
+<span class="fc" id="L79">    private static int numeroSequencial = 0;</span>
+    
+    /**
+     * Constrói uma instância de PedidoPrestacaoServico que recebe o serviço, a data, a hora de início e de fim, descrição da tarefa e número atribuido
+     * @param servico Serviço solicitado pelo pedido
+     * @param data Data solicitada para execução do serviço
+     * @param horaInicio hora de início do serviço
+     * @param horaFim hora de fim do serviço
+     * @param descTarefa descrição da tarefa a ser executada
+     */
+<span class="fc" id="L89">    public PedidoPrestacaoServico(Servico servico, Data data, Tempo horaInicio, Tempo horaFim, String descTarefa, double valorTotal, EnderecoPostal endPostal){</span>
+<span class="fc" id="L90">        numeroSequencial++;</span>
+<span class="fc" id="L91">        this.servico = new Servico(servico);</span>
+<span class="fc" id="L92">        this.data = new Data(data);</span>
+<span class="fc" id="L93">        this.horaInicio = new Tempo(horaInicio);</span>
+<span class="fc" id="L94">        this.horaFim = new Tempo(horaFim);</span>
+<span class="fc" id="L95">        this.descTarefa = descTarefa;</span>
+<span class="fc" id="L96">        this.valorTotal = valorTotal;</span>
+<span class="fc" id="L97">        numeroAtribuido = numeroSequencial;</span>
+<span class="fc" id="L98">        this.endPostal = new EnderecoPostal(endPostal);</span>
+<span class="fc" id="L99">    }</span>
+    
+    /**
+     * Constrói uma instância de PedidoPrestacaoServico que é cópia de uma instância de pedido que é passada por parâmetro
+     * @param pedidoPrestacaoServico instância PedidoPrestacaoServico que vai ser 'copiada'
+     */
+<span class="nc" id="L105">    public PedidoPrestacaoServico(PedidoPrestacaoServico pedidoPrestacaoServico){</span>
+<span class="nc" id="L106">        this.servico = pedidoPrestacaoServico.servico;</span>
+<span class="nc" id="L107">        this.data = pedidoPrestacaoServico.data;</span>
+<span class="nc" id="L108">        this.horaInicio = pedidoPrestacaoServico.horaInicio;</span>
+<span class="nc" id="L109">        this.horaFim = pedidoPrestacaoServico.horaFim;</span>
+<span class="nc" id="L110">        this.descTarefa = pedidoPrestacaoServico.descTarefa;</span>
+<span class="nc" id="L111">        this.valorTotal = pedidoPrestacaoServico.valorTotal;</span>
+<span class="nc" id="L112">        this.endPostal = pedidoPrestacaoServico.endPostal;</span>
+<span class="nc" id="L113">    }</span>
+    /**
+     * Constrói uma instância de PedidoPrestacaoServico com os valores por omissão
+     */
+<span class="fc" id="L117">    public PedidoPrestacaoServico(){</span>
+<span class="fc" id="L118">        numeroSequencial++;</span>
+<span class="fc" id="L119">        servico = SERVICO_POR_OMISSAO;</span>
+<span class="fc" id="L120">        data = DATA_POR_OMISSAO;</span>
+<span class="fc" id="L121">        horaInicio = HORA_INICIO_POR_OMISSAO;</span>
+<span class="fc" id="L122">        horaFim = HORA_FIM_POR_OMISSAO;</span>
+<span class="fc" id="L123">        descTarefa = DESC_TAREFA_POR_OMISSAO;</span>
+<span class="fc" id="L124">        valorTotal = VALOR_TOTAL_POR_OMISSAO;</span>
+<span class="fc" id="L125">        numeroAtribuido = numeroSequencial;</span>
+<span class="fc" id="L126">        endPostal = ENDERECO_POR_OMISSAO;</span>
+<span class="fc" id="L127">    }</span>
+    /**
+     * Devolve o Serviço solicitado no Pedido
+     * @return Serviço solicitado no Pedido
+     */
+    public Servico getServico(){
+<span class="nc" id="L133">        return servico;</span>
+    }
+    /**
+     * Devolve a Data solicitada para a execução do Serviço
+     * @return Data solicitada para a execução do Serviço
+     */
+    public Data getData(){
+<span class="nc" id="L140">        return data;</span>
+    }
+    /**
+     * Devolve a hora de início do serviço
+     * @return hora de início do serviço
+     */
+    public Tempo getHoraInicio(){
+<span class="nc" id="L147">        return horaInicio;</span>
+    }
+    /**
+     * Devolve a hora de fim do serviço
+     * @return hora de fim do serviço
+     */
+    public Tempo getHoraFim(){
+<span class="nc" id="L154">        return horaFim;</span>
+    }
+    /**
+     * Devolve a descrição da tarefa a ser executada
+     * @return descrição da tarefa a ser executada
+     */
+    public String getDescTarefa(){
+<span class="nc" id="L161">        return descTarefa;</span>
+    }
+    
+    /**
+     * Devolve o valor(€) a pagar no total pelo pedido efetuado
+     * @return valor(€) a pagar no total pelo pedido efetuado
+     */
+    public double getValorTotal(){
+<span class="nc" id="L169">        return valorTotal;</span>
+    }
+    /**
+     * Devolve o endereço postal onde o pedido é para ser executado
+     * @return endereço postal onde o pedido é para ser executado
+     */
+    public EnderecoPostal getEndereco(){
+<span class="nc" id="L176">        return endPostal;</span>
+    }
+    
+    /**
+     * Devolve o número sequencial atribuído
+     * @return 
+     */
+    public int getNumeroAtribuido(){
+<span class="fc" id="L184">        return numeroAtribuido;</span>
+    }
+    /**
+     * Devolve a Data solicitada para a execução do serviço no formato (DD/MM/AA)
+     * @return Data solicitada para a execução do serviço no formato (DD/MM/AA)
+     */
+    public String getStringData(){
+<span class="nc" id="L191">        return data.toAnoMesDiaString();</span>
+    }
+    /**
+     * Modifica o Serviço solicitado
+     * @param servico Serviço solicitado
+     */
+    public void setServico(Servico servico){
+<span class="nc bnc" id="L198" title="All 2 branches missed.">        if(servico == null)</span>
+<span class="nc" id="L199">            throw new IllegalArgumentException(&quot;O argumento 'serviço' não deve ser nulo.&quot;);</span>
+<span class="nc" id="L200">        this.servico = new Servico(servico);</span>
+<span class="nc" id="L201">    }</span>
+    /**
+     * Modifica a Data solicitada para execução do serviço
+     * @param data Data solicitada para execução do serviço
+     */
+    public void setData(Data data){
+<span class="nc bnc" id="L207" title="All 2 branches missed.">        if(data == null)</span>
+<span class="nc" id="L208">            throw new IllegalArgumentException(&quot;O argumento 'data' não deve ser nulo.&quot;);</span>
+<span class="nc" id="L209">        this.data.setData(data.getAno(), data.getMes(), data.getDia());</span>
+<span class="nc" id="L210">    }</span>
+    /**
+     * Modifica a Data solicitada para execução do serviço
+     * @param ano ano da data
+     * @param mes mes do ano
+     * @param dia dia do mes
+     */
+    public void setData(int ano, int mes, int dia){
+<span class="nc" id="L218">        this.data.setData(ano,mes,dia);</span>
+<span class="nc" id="L219">    }</span>
+    /**
+     * Modifica a hora de inicio do serviço
+     * @param horaInicio hora de inicio do serviço
+     */
+    public void setHoraInicio(Tempo horaInicio){
+<span class="nc" id="L225">        this.horaInicio.setTempo(horaInicio.getHoras());</span>
+<span class="nc" id="L226">    }</span>
+    /**
+     * Modifica a hora de fim do serviço
+     * @param horaFim hora de fim do serviço
+     */
+    public void setHoraFim(Tempo horaFim){
+<span class="nc" id="L232">        this.horaFim.setTempo(horaFim.getHoras());</span>
+<span class="nc" id="L233">    }</span>
+    /**
+     * Modifica a descrição da tarefa a ser executada
+     * @param descTarefa descrição da tarefa a ser executada
+     */
+    public void setDescricaoTarefa(String descTarefa){
+<span class="nc bnc" id="L239" title="All 4 branches missed.">        if(descTarefa == null || descTarefa.isEmpty())</span>
+<span class="nc" id="L240">            throw new IllegalArgumentException(&quot;O argumento 'descrição da tarefa' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L241">        this.descTarefa = descTarefa;</span>
+<span class="nc" id="L242">    }</span>
+    
+    /**
+     * Modifica o número atual do valor sequencial
+     * @param numeroSequencial número atual do valor sequencial
+     */
+    public void setNumeroSequencial(int numeroSequencial){
+<span class="nc" id="L249">        this.numeroSequencial = numeroSequencial;</span>
+<span class="nc" id="L250">    }</span>
+    /**
+     * Modifica o endereço postal onde será executado o pedido
+     * @param end endereço postal onde será executado o pedido
+     */
+    public void setEndereco(EnderecoPostal end){
+<span class="nc" id="L256">        this.endPostal = end;</span>
+<span class="nc" id="L257">    }</span>
+    
+    /**
+     * Permite atualizar o número de pedidos existentes em registo 
+     */
+    public static void numeroDePedidosEfetuados(){
+<span class="nc" id="L263">        numeroSequencial = AplicacaoGPSD.empresa.getListaPedidos().size();</span>
+<span class="nc" id="L264">    }</span>
+    
+    /**
+     * Compara dois pedidos de prestação de serviço através do número atribuído, serviço solicitado e endereço
+     * sendo os objectos considerados iguais apenas quando estas 3 características forem iguais
+     * @param obj objecto que vai ser comparado com o objecto que chama o método
+     * @return true, se as referências dos objectos a ser comparados apontam para o mesmo objecto
+     *         false, se o objecto comparado for nulo ou as classes dos dois objectos forem diferentes
+     *         true, se o numeroAtribuido, servico e endPostal forem iguais
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L276" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="fc" id="L277">            return true;</span>
+        }
+<span class="nc bnc" id="L279" title="All 4 branches missed.">        if (obj == null || this.getClass() != obj.getClass()) {</span>
+<span class="nc" id="L280">            return false;</span>
+        }
+<span class="nc" id="L282">        PedidoPrestacaoServico other = (PedidoPrestacaoServico) obj;</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">        if (this.numeroAtribuido != other.numeroAtribuido) {</span>
+<span class="nc" id="L284">            return false;</span>
+        }
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        if (Double.doubleToLongBits(this.valorTotal) != Double.doubleToLongBits(other.valorTotal)) {</span>
+<span class="nc" id="L287">            return false;</span>
+        }
+<span class="nc bnc" id="L289" title="All 2 branches missed.">        if (!Objects.equals(this.servico, other.servico)) {</span>
+<span class="nc" id="L290">            return false;</span>
+        }
+<span class="nc bnc" id="L292" title="All 2 branches missed.">        if (!Objects.equals(this.endPostal, other.endPostal)) {</span>
+<span class="nc" id="L293">            return false;</span>
+        }
+<span class="nc" id="L295">        return true;</span>
+    }
+    
+    /**
+     * Devolve as características do pedido (nº do pedido, serviço solicitado, descrição da tarefa e valor a pagar)
+     * @return características do pedido (nº do pedido, serviço solicitado, descrição da tarefa e valor a pagar)
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L304">        return String.format(&quot;\nPedido nº: %d\nServiço: %s \nLocal a realizar: %s\nTarefa: %s \nValor a pagar : %.2f€&quot;, numeroAtribuido, this.getServico().toString(), this.getEndereco().toString(), descTarefa, valorTotal);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

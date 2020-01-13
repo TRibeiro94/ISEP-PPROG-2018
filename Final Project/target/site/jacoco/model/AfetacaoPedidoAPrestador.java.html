@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AfetacaoPedidoAPrestador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">AfetacaoPedidoAPrestador.java</span></div><h1>AfetacaoPedidoAPrestador.java</h1><pre class="source lang-java linenums">package model;
+
+import java.util.Objects;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class AfetacaoPedidoAPrestador {
+    
+    /**
+     * Pedido de Prestação de Serviço
+     */
+    private PedidoPrestacaoServico pedidoPrestacaoServico;
+    /**
+     * Prestador de Serviço afetado ao Pedido
+     */
+    private PrestadorServico prestadorServico;
+    
+    /**
+     * Pedido de Prestação de Serviço por omissão
+     */
+<span class="nc" id="L23">    private static final PedidoPrestacaoServico PEDIDO_POR_OMISSAO = new PedidoPrestacaoServico();</span>
+    /**
+     * Prestador de Serviço afetado ao Pedido por omissão
+     */
+<span class="nc" id="L27">    private static final PrestadorServico PRESTADOR_POR_OMISSAO = new PrestadorServico();</span>
+    
+    /**
+     * Constrói uma instância de AfetacaoPedidoAPrestador que recebe um pedido e um prestador
+     * @param pedidoPrestacaoServico Pedido de Prestação de Serviço
+     * @param prestadorServico Prestador de Serviço afetado ao Pedido
+     */
+<span class="nc" id="L34">    public AfetacaoPedidoAPrestador(PedidoPrestacaoServico pedidoPrestacaoServico, PrestadorServico prestadorServico){</span>
+<span class="nc" id="L35">        this.pedidoPrestacaoServico = pedidoPrestacaoServico;</span>
+<span class="nc" id="L36">        this.prestadorServico = prestadorServico;</span>
+<span class="nc" id="L37">    }</span>
+    /**
+     * Constrói uma instância de AfetacaoPedidoAPrestador com valores por omissão
+     */
+<span class="nc" id="L41">    public AfetacaoPedidoAPrestador(){</span>
+<span class="nc" id="L42">        pedidoPrestacaoServico = PEDIDO_POR_OMISSAO;</span>
+<span class="nc" id="L43">        prestadorServico = PRESTADOR_POR_OMISSAO;</span>
+<span class="nc" id="L44">    }</span>
+    /**
+     * Devolve o Pedido de Prestação de Serviço
+     * @return Pedido de Prestação de Serviço
+     */
+    public PedidoPrestacaoServico getPedido(){
+<span class="nc" id="L50">        return pedidoPrestacaoServico;</span>
+    }
+    /**
+     * Devolve o Prestador de Serviço
+     * @return Prestador de Serviço
+     */
+    public PrestadorServico getPrestador(){
+<span class="nc" id="L57">        return prestadorServico;</span>
+    }
+    /**
+     * Modifica o Pedido de Prestação de Serviço
+     * @param pedido Pedido de Prestação de Serviço
+     */
+    public void setPedido(PedidoPrestacaoServico pedido){
+<span class="nc" id="L64">        this.pedidoPrestacaoServico = new PedidoPrestacaoServico(pedido);</span>
+<span class="nc" id="L65">    }</span>
+    /**
+     * Modifica o Prestador de Serviço
+     * @param prestador Prestador de Serviço
+     */
+    public void setPrestador(PrestadorServico prestador){
+<span class="nc" id="L71">        this.prestadorServico = new PrestadorServico(prestador);</span>
+<span class="nc" id="L72">    }</span>
+    
+    /**
+     * Devolve as características da afetação (prestador, pedido)
+     * @return características da afetação (prestador, pedido)
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L80">        return String.format(&quot;\nAfetação:\nPrestador: (%s) %s\nPedido %d&quot;, prestadorServico.getMecanografico(), prestadorServico.getNome(), pedidoPrestacaoServico.getNumeroAtribuido());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

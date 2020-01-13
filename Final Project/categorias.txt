@@ -1,0 +1,5 @@
+cat01 / Contabilidade
+cat02 / Hotelaria & Restauração
+cat03 / Manutenção & Reparações
+cat04 / Construção Civil
+cat05 / Criatividade & Design

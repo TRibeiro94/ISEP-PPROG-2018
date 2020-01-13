@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CodigoPostal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">CodigoPostal.java</span></div><h1>CodigoPostal.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.Serializable;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class CodigoPostal implements Serializable{
+    /**
+     * Código-Postal do endereço
+     */
+    private String codPostal;
+    /**
+     * Latitude do Código-Postal
+     */
+    private String latitude;
+    /**
+     * Longitude do Código-Postal
+     */
+    private String longitude;
+    /**
+     * Código-Postal do endereço por omissão
+     */
+    private static final String COD_POSTAL_POR_OMISSAO = &quot;sem Código-Postal&quot;;
+    /**
+     * Latitude do Código-postal por omissão
+     */
+    private static final String LATITUDE_POR_OMISSAO = &quot;0&quot;;
+    /**
+     * Longitude do Código-Postal por omissão
+     */
+    private static final String LONGITUDE_POR_OMISSAO = &quot;0&quot;;
+    
+    /**
+     * Constrói uma instância de CódigoPostal que recebe o código-postal, sua latitude e longitude
+     * @param codPostal Código-Postal do endereço
+     * @param latitude latitude do código-postal
+     * @param longitude longitude do código-postal
+     */
+<span class="fc" id="L41">    public CodigoPostal(String codPostal, String latitude, String longitude){</span>
+<span class="fc" id="L42">        this.codPostal = codPostal;</span>
+<span class="fc" id="L43">        this.latitude = latitude;</span>
+<span class="fc" id="L44">        this.longitude = longitude;</span>
+<span class="fc" id="L45">    }</span>
+    /**
+     * Constrói uma instância de CodigoPostal que é cópia de uma instância CodigoPostal passada por parâmetro
+     * @param outroCodigo CodigoPostal 
+     */
+<span class="fc" id="L50">    public CodigoPostal(CodigoPostal outroCodigo){</span>
+<span class="fc" id="L51">        this.codPostal = outroCodigo.codPostal;</span>
+<span class="fc" id="L52">        this.latitude = outroCodigo.latitude;</span>
+<span class="fc" id="L53">        this.longitude = outroCodigo.longitude;</span>
+<span class="fc" id="L54">    }</span>
+    /**
+     * Constrói uma instância de CodigoPostal com os valores por omissão
+     */
+<span class="fc" id="L58">    public CodigoPostal(){</span>
+<span class="fc" id="L59">        codPostal = COD_POSTAL_POR_OMISSAO;</span>
+<span class="fc" id="L60">        latitude = LATITUDE_POR_OMISSAO;</span>
+<span class="fc" id="L61">        longitude = LONGITUDE_POR_OMISSAO;</span>
+<span class="fc" id="L62">    }</span>
+    /**
+     * Devolve o Código-postal do endereço
+     * @return código-postal
+     */
+    public String getCodPostal(){
+<span class="nc" id="L68">        return codPostal;</span>
+    }
+    /**
+     * Devolve a Latitude do código-postal
+     * @return latitude do código-postal
+     */
+    public String getLatitude(){
+<span class="nc" id="L75">        return latitude;</span>
+    }
+    /**
+     * Devolve a Longitude do código-postal
+     * @return longitude do código-postal
+     */
+    public String getLongitude(){
+<span class="nc" id="L82">        return longitude;</span>
+    }
+    /**
+     * Modifica o código-postal do endereço
+     * @param codPostal código-postal do endereço
+     */
+    public void setCodPostal(String codPostal){
+<span class="nc bnc" id="L89" title="All 4 branches missed.">        if(codPostal == null || codPostal.isEmpty())</span>
+<span class="nc" id="L90">            throw new IllegalArgumentException(&quot;O argumento 'código-postal' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L91">        this.codPostal = codPostal;</span>
+<span class="nc" id="L92">    }</span>
+    /**
+     * Modifica a latitude do código-postal
+     * @param latitude latitude do código-postal
+     */
+    public void setLatitude(String latitude){
+<span class="nc bnc" id="L98" title="All 4 branches missed.">        if(latitude == null || latitude.isEmpty())</span>
+<span class="nc" id="L99">            throw new IllegalArgumentException(&quot;O argumento 'latitude' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L100">        this.latitude = latitude;</span>
+<span class="nc" id="L101">    }</span>
+    /**
+     * Modifica a longitude do código-postal
+     * @param longitude longitude do código-postal
+     */
+    public void setLongitude(String longitude){
+<span class="nc bnc" id="L107" title="All 4 branches missed.">        if(longitude == null || longitude.isEmpty())</span>
+<span class="nc" id="L108">            throw new IllegalArgumentException(&quot;O argumento 'longitude' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L109">        this.longitude = longitude;</span>
+<span class="nc" id="L110">    }</span>
+    /**
+     * Modifica os atributos de uma instância de CodigoPostal
+     * @param codPostal código-postal do endereço
+     * @param latitude latitude do código-postal
+     * @param longitude longitude do código-postal
+     */
+    public void setCodigoPostal(String codPostal, String latitude, String longitude){
+<span class="nc bnc" id="L118" title="All 12 branches missed.">        if(codPostal == null || codPostal.isEmpty() || latitude == null || latitude.isEmpty() || longitude == null || longitude.isEmpty())</span>
+<span class="nc" id="L119">            throw new IllegalArgumentException(&quot;Os argumentos de código-postal(código, latitude e longitude) não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L120">        this.codPostal = codPostal;</span>
+<span class="nc" id="L121">        this.latitude = latitude;</span>
+<span class="nc" id="L122">        this.longitude = longitude;</span>
+<span class="nc" id="L123">    }</span>
+    
+    /**
+     * Compara dois objectos CodigoPostal através do código-postal, latitude e longitude
+     * sendo os objectos considerados iguais apenas quando estas 3 características forem iguais
+     * @param outroObjecto objecto que vai ser comparado com o objecto que chama o método
+     * @return true, se as referências dos objectos a ser comparados apontam para o mesmo objecto
+     *         false, se o objecto comparado for nulo ou as classes dos dois objectos forem diferentes
+     *         true, se código-postal, latitude e longitude dos dois objectos forem iguais
+     */
+    @Override
+    public boolean equals(Object outroObjecto) {
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">        if (this == outroObjecto) {</span>
+<span class="nc" id="L136">            return true;</span>
+        }
+<span class="pc bpc" id="L138" title="2 of 4 branches missed.">        if (outroObjecto == null || this.getClass() != outroObjecto.getClass()) {</span>
+<span class="nc" id="L139">            return false;</span>
+        }
+<span class="fc" id="L141">        CodigoPostal outroCodigo = (CodigoPostal) outroObjecto;</span>
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">            return this.codPostal.equalsIgnoreCase(outroCodigo.codPostal)</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">                &amp;&amp; this.latitude.equalsIgnoreCase(outroCodigo.latitude)</span>
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">                &amp;&amp; this.longitude.equalsIgnoreCase(outroCodigo.longitude);</span>
+    }
+    
+    /**
+     * Devolve as características do CodigoPostal (codigo, latitude e longitude)
+     * @return 
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L153">        return String.format(&quot;CP:%s Latitude: %s / Longitude: %s&quot;,codPostal, latitude, longitude);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

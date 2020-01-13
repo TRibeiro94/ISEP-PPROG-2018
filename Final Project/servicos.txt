@@ -1,0 +1,15 @@
+cat01 / cont1 / Contabilidade / Contabilidade Social, Privada, Organizada / 15.5
+cat01 / cont2 / Processamento Salarial / Registo dos montantes que os órgãos da empresa recebem mensalmente / 25.5
+cat01 / cont3 / Consultoria Financeira / Apoio às suas finanças e gestão de riqueza / 50.0
+cat02 / rest1 / Recepcionista / Recepcionista para Navio, Hotel ou Restaurante / 4.6
+cat02 / rest2 / Barman / Barman para eventos, festas ou bars e restaurantes / 3.1
+cat02 / rest3 / Cozinheiro / Cozinheiro apto para todo o tipo de cartas de cozinha / 6.1
+cat03 / man1 / Automóvel / Reparações a todo o tipo de automóveis / 7.9
+cat03 / man2 / Eletricidade / Manutenção de eletricidade industrial ou privada / 13.3
+cat03 / man3 / Carpintaria / Manutenção e reparação de estruturas em madeira / 20.5
+cat04 / con1 / Demolições / Todo o tipo de demolições de infraestruturas / 40.5
+cat04 / con2 / Operador Maquinaria Pesada / Operador para máquinas de construção consideradas pesadas / 20.2
+cat04 / con3 / Construtor Civil / Construtor habilitado para todo o tipo de obras / 12.9
+cat05 / cri1 / Marketier / Marketier habilitado para potencializar o seu negócio / 15.0
+cat05 / cri2 / Editor Audiovisual / Editoria de videos ou fotografias / 10.1
+cat05 / cri3 / Design Gráfico / Designer gráfico habilitado em Photoshop, InDesign ou Illustrator / 25.9

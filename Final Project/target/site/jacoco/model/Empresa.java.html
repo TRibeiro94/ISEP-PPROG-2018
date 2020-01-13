@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Empresa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Empresa.java</span></div><h1>Empresa.java</h1><pre class="source lang-java linenums">package model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class Empresa implements Serializable{
+
+    /**
+     * NIF da Empresa 
+     */
+    private String NIF;
+    /**
+     * Designacao da Empresa
+     */
+    private String designacao;
+    /**
+     * contentor que irá armazenar os Clientes da Empresa
+     */
+<span class="fc" id="L24">    private List&lt;Cliente&gt; registoClientes = new ArrayList&lt;Cliente&gt;();</span>
+    /**
+     * contentor que irá armazenar as Categorias da Empresa
+     */
+<span class="fc" id="L28">    private List&lt;Categoria&gt; registoCategorias = new ArrayList&lt;Categoria&gt;();</span>
+    /**
+     * contentor que irá armazenar os Serviços da Empresa
+     */
+<span class="fc" id="L32">    private List&lt;Servico&gt; registoServicos = new ArrayList&lt;Servico&gt;();</span>
+    /**
+     * contentor que irá armazenar os Prestadores de Serviço da Empresa
+     */
+<span class="fc" id="L36">    private List&lt;PrestadorServico&gt; registoPrestadores = new ArrayList&lt;PrestadorServico&gt;();</span>
+    /**
+     * contentor que irá armazenar os Administrativos da Empresa
+     */
+<span class="fc" id="L40">    private List&lt;Administrativo&gt; registoAdmins = new ArrayList&lt;Administrativo&gt;();</span>
+    /**
+     * Contentor que irá armazenar os Pedidos de prestação de serviço
+     */
+<span class="fc" id="L44">    private List &lt;PedidoPrestacaoServico&gt; registoPedidos = new ArrayList&lt;PedidoPrestacaoServico&gt;();</span>
+    /**
+     * Contentor que irá armazenar as afetações de pedidos a prestadores de serviço
+     */
+<span class="fc" id="L48">    private List &lt;AfetacaoPedidoAPrestador&gt; registoAfetacoes = new ArrayList&lt;AfetacaoPedidoAPrestador&gt;();</span>
+    /**
+     * Contentor que irá armazenar as áreas de atuação da Empresa
+     */
+<span class="fc" id="L52">    private List&lt;AreaGeografica&gt; registoAreasGeo = new ArrayList&lt;AreaGeografica&gt;();</span>
+    /**
+     * NIF da Empresa por omissão
+     */
+    private static final String NIF_STANDARD = &quot;265123345&quot;;
+    /**
+     * Designação da Empresa por omissão
+     */
+    private static final String DESIGNACAO_STANDARD = &quot;ISEP Serviços Lda.&quot;;
+
+    /**
+     * Constrói uma instância de Empresa designados à partida
+     */
+<span class="fc" id="L65">    public Empresa() {</span>
+<span class="fc" id="L66">        this.NIF = NIF_STANDARD;</span>
+<span class="fc" id="L67">        this.designacao = DESIGNACAO_STANDARD;</span>
+<span class="fc" id="L68">    }</span>
+
+    /**
+     * Devolve o NIF da Empresa
+     *
+     * @return NIF da Empresa
+     */
+    public String getNIF() {
+<span class="nc" id="L76">        return NIF;</span>
+    }
+
+    /**
+     * Devolve a designação da Empresa
+     *
+     * @return designação da Empresa
+     */
+    public String getDesignacao() {
+<span class="nc" id="L85">        return designacao;</span>
+    }
+
+    /**
+     * Devolve a lista de Clientes da Empresa
+     *
+     * @return lista de Clientes da Empresa
+     */
+    public List&lt;Cliente&gt; getListaClientes() {
+<span class="fc" id="L94">        return registoClientes;</span>
+    }
+
+    /**
+     * Devolve a lista de Categorias da Empresa
+     *
+     * @return lista de Categorias da Empresa
+     */
+    public List&lt;Categoria&gt; getListaCategorias() {
+<span class="fc" id="L103">        return registoCategorias;</span>
+    }
+
+    /**
+     * Devolve a lista de Serviços da Empresa
+     *
+     * @return lista de Serviços da Empresa
+     */
+    public List&lt;Servico&gt; getListaServicos() {
+<span class="fc" id="L112">        return registoServicos;</span>
+    }
+
+    /**
+     * Devolve a lista de Prestadores da Empresa
+     *
+     * @return lista de Prestadores da Empresa
+     */
+    public List&lt;PrestadorServico&gt; getListaPrestadores() {
+<span class="fc" id="L121">        return registoPrestadores;</span>
+    }
+
+    /**
+     * Devolve a lista de Administrativos da Empresa
+     *
+     * @return lista de Administrativos da Empresa
+     */
+    public List&lt;Administrativo&gt; getListaAdmins() {
+<span class="fc" id="L130">        return registoAdmins;</span>
+    }
+    /**
+     * Devolve a lista de pedidos de prestação de serviços
+     * @return lista de pedidos de prestação de serviços
+     */
+    public List&lt;PedidoPrestacaoServico&gt; getListaPedidos(){
+<span class="fc" id="L137">        return registoPedidos;</span>
+    }
+    /**
+     * Devolve a lista de afetações de pedidos a prestadores de serviço
+     * @return lista de afetações de pedidos a prestadores de serviço
+     */
+    public List&lt;AfetacaoPedidoAPrestador&gt; getListaAfetacoes(){
+<span class="nc" id="L144">        return registoAfetacoes;</span>
+    }
+
+    /**
+     * Devolve a lista de áreas geográficas de atuação da empresa
+     * @return lista de áreas geográficas de atuação da empresa
+     */
+    public List&lt;AreaGeografica&gt; getListaAreas(){
+<span class="fc" id="L152">        return registoAreasGeo;</span>
+    }    
+    
+    /**
+     * Modifica a lista de Clientes da Empresa
+     *
+     * @param registoClientes lista de Clientes da Empresa
+     */
+    public void setRegistoClientes(List&lt;Cliente&gt; registoClientes) {
+<span class="nc bnc" id="L161" title="All 4 branches missed.">        if(registoClientes == null || registoClientes.isEmpty())</span>
+<span class="nc" id="L162">            throw new IllegalArgumentException(&quot;O argumento 'lista de Categorias' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L163">        this.registoClientes = registoClientes;</span>
+<span class="nc" id="L164">    }</span>
+
+    /**
+     * Modifica a lista de Categorias da Empresa
+     *
+     * @param registoCategorias lista de Categorias da Empresa
+     */
+    public void setRegistoCategorias(List&lt;Categoria&gt; registoCategorias) {
+<span class="nc bnc" id="L172" title="All 4 branches missed.">        if(registoCategorias == null || registoCategorias.isEmpty())</span>
+<span class="nc" id="L173">            throw new IllegalArgumentException(&quot;O argumento 'registo de Categorias' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L174">        this.registoCategorias = registoCategorias;</span>
+<span class="nc" id="L175">    }</span>
+
+    /**
+     * Modifica a lista de Serviços da Empresa
+     *
+     * @param registoServicos lista de Serviços da Empresa
+     */
+    public void setRegistoServicos(List&lt;Servico&gt; registoServicos) {
+<span class="nc bnc" id="L183" title="All 4 branches missed.">        if(registoServicos == null || registoServicos.isEmpty())</span>
+<span class="nc" id="L184">            throw new IllegalArgumentException(&quot;O argumento 'registo de Serviços' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L185">        this.registoServicos = registoServicos;</span>
+<span class="nc" id="L186">    }</span>
+
+    /**
+     * Modifica a lista de Prestadores da Empresa
+     *
+     * @param registoPrestadores lista de Prestadores da Empresa
+     */
+    public void setRegistoPrestadores(List&lt;PrestadorServico&gt; registoPrestadores) {
+<span class="nc bnc" id="L194" title="All 4 branches missed.">        if(registoPrestadores == null || registoPrestadores.isEmpty())</span>
+<span class="nc" id="L195">            throw new IllegalArgumentException(&quot;O argumento 'registo de Prestadores' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L196">        this.registoPrestadores = registoPrestadores;</span>
+<span class="nc" id="L197">    }</span>
+
+    /**
+     * Modifica a lista de Administrativos da Empresa
+     *
+     * @param registoAdmins lista de administrativos da Empresa
+     */
+    public void setRegistoAdmins(List&lt;Administrativo&gt; registoAdmins) {
+<span class="nc bnc" id="L205" title="All 4 branches missed.">        if(registoAdmins == null || registoAdmins.isEmpty())</span>
+<span class="nc" id="L206">            throw new IllegalArgumentException(&quot;O argumento 'registo de administrativos' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L207">        this.registoAdmins = registoAdmins;</span>
+<span class="nc" id="L208">    }</span>
+    /**
+     * Modifica a lista de pedidos de prestação de serviço
+     * @param registoPedidos lista de pedidos de prestação de serviço
+     */
+    public void setRegistoPedidos(List&lt;PedidoPrestacaoServico&gt; registoPedidos){
+<span class="nc" id="L214">        this.registoPedidos = registoPedidos;</span>
+<span class="nc" id="L215">    }</span>
+    /**
+     * Modifica a lista de afetações de pedidos a prestadores
+     * @param afetacao 
+     */
+    public void setRegistoAfetacoes(List&lt;AfetacaoPedidoAPrestador&gt; afetacao){
+<span class="nc bnc" id="L221" title="All 4 branches missed.">        if(afetacao == null || afetacao.isEmpty())</span>
+<span class="nc" id="L222">            throw new IllegalArgumentException(&quot;O argumento 'afetação de pedidos a prestadores' não deve estar vazio ou ser nulo.&quot;);</span>
+<span class="nc" id="L223">        this.registoAfetacoes = afetacao;</span>
+<span class="nc" id="L224">    }</span>
+    
+    /**
+     * Modifica a lista de áreas geográficas de atuação da empresa
+     * @param areas lista de áreas geográficas de atuação da empresa
+     */
+    public void setRegistoAreas(List&lt;AreaGeografica&gt; areas){
+<span class="nc" id="L231">        this.registoAreasGeo = areas;</span>
+<span class="nc" id="L232">    }    </span>
+    
+    /**
+     * Adiciona o Utilizador passado por parâmetro à lista referente à sua categoria Se Cliente, é adicionado à lista de Clientes Se Prestador, é adicionado à lista de Prestadores Se Administrativo, é adicionado à lista de Administrativos
+     *
+     * @param uti Utilizador que vai ser adicionado a uma das listas da Empresa
+     */
+    public void adicionarUtilizador(Utilizador uti) {
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        if (uti instanceof Cliente) {</span>
+<span class="fc" id="L241">            Cliente novoCliente = (Cliente) uti;</span>
+<span class="fc" id="L242">            registoClientes.add(novoCliente);</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        } else if (uti instanceof PrestadorServico) {</span>
+<span class="fc" id="L244">            PrestadorServico novoPrestador = (PrestadorServico) uti;</span>
+<span class="fc" id="L245">            registoPrestadores.add(novoPrestador);</span>
+<span class="pc bpc" id="L246" title="1 of 2 branches missed.">        } else if (uti instanceof Administrativo) {</span>
+<span class="fc" id="L247">            Administrativo novoAdmin = (Administrativo) uti;</span>
+<span class="fc" id="L248">            registoAdmins.add(novoAdmin);</span>
+        }
+<span class="fc" id="L250">    }</span>
+
+    /**
+     * Adiciona uma Categoria à lista de Categorias da Empresa
+     *
+     * @param cat Categoria que vai ser adicionada à lista de Categorias da Empresa
+     */
+    public void adicionarCategoria(Categoria cat) {
+<span class="pc bpc" id="L258" title="1 of 2 branches missed.">        if (cat == null) {</span>
+<span class="nc" id="L259">            throw new IllegalArgumentException(&quot;A categoria não pode ser nula.&quot;);</span>
+        }
+<span class="fc" id="L261">        registoCategorias.add(cat);</span>
+<span class="fc" id="L262">    }</span>
+
+    /**
+     * Adiciona um Serviço à lista de Serviços da Empresa
+     *
+     * @param serv Serviço que vai ser adicionado à lista de Serviços da Empresa
+     */
+    public void adicionarServico(Servico serv) {
+<span class="pc bpc" id="L270" title="1 of 2 branches missed.">        if (serv == null) {</span>
+<span class="nc" id="L271">            throw new IllegalArgumentException(&quot;A categoria não pode ser nula.&quot;);</span>
+        }
+<span class="fc" id="L273">        registoServicos.add(serv);</span>
+<span class="fc" id="L274">    }</span>
+    
+    /**
+     * Adiciona um Pedido de Prestação de Serviço à lista de pedidos da Empresa
+     * @param pedido Pedido de Prestação de Serviço à lista de pedidos da Empresa
+     */
+    public void adicionarPedido(PedidoPrestacaoServico pedido){
+<span class="pc bpc" id="L281" title="1 of 2 branches missed.">        if (pedido == null){</span>
+<span class="nc" id="L282">            throw new IllegalArgumentException(&quot;O pedido não pode ser nulo.&quot;);</span>
+        }
+<span class="fc" id="L284">        registoPedidos.add(pedido);</span>
+<span class="fc" id="L285">    }</span>
+    
+    /**
+     * Adiciona uma área geográfica ao registo de áreas de atuação da empresa
+     * @param area área geográfica ao registo de áreas de atuação da empresa
+     */
+    public void adicionarAreaGeo(AreaGeografica area) {
+<span class="pc bpc" id="L292" title="1 of 2 branches missed.">        if (area == null) {</span>
+<span class="nc" id="L293">            throw new IllegalArgumentException(&quot;A área geográfica não pode ser nula.&quot;);</span>
+        }
+<span class="fc" id="L295">        registoAreasGeo.add(area);</span>
+<span class="fc" id="L296">    }    </span>
+    
+    /**
+     * Imprime os Clientes da Empresa
+     */
+    public void listarClientes() {
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        for (Cliente cli : this.registoClientes) {</span>
+<span class="nc" id="L303">            System.out.println(cli.toString());</span>
+<span class="nc" id="L304">        }</span>
+<span class="nc" id="L305">    }</span>
+
+    /**
+     * Imprime as Categorias da Empresa
+     */
+    public void listarCategorias() {
+<span class="nc" id="L311">        int i = 1;</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">        for (Categoria cat : this.registoCategorias) {</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">            if(cat != null){</span>
+<span class="nc" id="L314">                System.out.println(i + &quot; - &quot; + cat.toString());</span>
+<span class="nc" id="L315">                i++;</span>
+            }
+<span class="nc" id="L317">        }</span>
+<span class="nc" id="L318">    }</span>
+
+    /**
+     * Imprime todos os Serviços da Empresa
+     */
+    public void listarServicos() {
+<span class="nc" id="L324">        int i = 1;</span>
+<span class="nc bnc" id="L325" title="All 2 branches missed.">        for (Servico s : this.registoServicos) {</span>
+<span class="nc bnc" id="L326" title="All 2 branches missed.">            if(s != null){</span>
+<span class="nc" id="L327">                System.out.println(i + &quot; - &quot; + s.toString());</span>
+<span class="nc" id="L328">                i++;</span>
+            }
+<span class="nc" id="L330">        }</span>
+<span class="nc" id="L331">    }</span>
+
+    /**
+     * Imprime os serviços apenas de uma dada Categoria cujo ID é passado por parâmetro
+     *
+     * @param catID ID da Categoria
+     */
+    public void listarServicosByCatID(String catID) {
+<span class="nc" id="L339">        int i = 1;</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">        for (Servico s : this.registoServicos) {</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">            if (catID.equals(s.getCatID())) {</span>
+<span class="nc" id="L342">                System.out.println(i + &quot; - &quot; + s.toString());</span>
+<span class="nc" id="L343">                i++;</span>
+            }
+<span class="nc" id="L345">        }</span>
+<span class="nc" id="L346">    }</span>
+
+    /**
+     * Imprime os Prestadores de Serviço da Empresa
+     */
+    public void listarPrestadores() {
+<span class="nc bnc" id="L352" title="All 2 branches missed.">        for (PrestadorServico ps : this.registoPrestadores) {</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">            if(ps != null){</span>
+<span class="nc" id="L354">                System.out.println(ps.toString());</span>
+            }
+<span class="nc" id="L356">        }</span>
+<span class="nc" id="L357">    }</span>
+
+    /**
+     * Imprime os Administrativos da Empresa
+     */
+    public void listarAdmins() {
+<span class="nc bnc" id="L363" title="All 2 branches missed.">        for (Administrativo a : this.registoAdmins) {</span>
+<span class="nc bnc" id="L364" title="All 2 branches missed.">            if(a != null){</span>
+<span class="nc" id="L365">                System.out.println(a.toString());</span>
+            }
+<span class="nc" id="L367">        }</span>
+<span class="nc" id="L368">    }</span>
+    
+    /**
+     * Imprime os Pedidos de prestação de serviço
+     */
+    public void listarPedidos(){
+<span class="nc bnc" id="L374" title="All 2 branches missed.">        for (PedidoPrestacaoServico pps : this.registoPedidos){</span>
+<span class="nc bnc" id="L375" title="All 2 branches missed.">            if(pps != null){</span>
+<span class="nc" id="L376">                System.out.println(pps.toString());</span>
+            }
+<span class="nc" id="L378">        }</span>
+<span class="nc" id="L379">    }</span>
+    /**
+     * Imprime as afetações de pedidos a prestadores de serviço
+     */
+    public void listarAfetacoes(){
+<span class="nc bnc" id="L384" title="All 2 branches missed.">        for(AfetacaoPedidoAPrestador app : this.registoAfetacoes){</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            if(app != null){</span>
+<span class="nc" id="L386">                System.out.println(app.toString());</span>
+            }
+<span class="nc" id="L388">        }</span>
+<span class="nc" id="L389">    }</span>
+
+    /**
+     * Verifica através do e-mail passado por parâmetro, se o mesmo corresponde a um Cliente registado na Empresa
+     *
+     * @param email e-mail que vai ser comparado com os existentes no contentor de Clientes
+     * @return true, se o e-mail passado por parâmetro corresponde a um Cliente da Empresa false, se o e-mail passado por parâmetro não corresponde a um Cliente da Empresa
+     */
+    public boolean confirmaExistenciaClienteByEmail(String email) {
+<span class="pc bpc" id="L398" title="1 of 2 branches missed.">        for (Cliente cliente : this.registoClientes) {</span>
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">            if (cliente.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L400">                return true;</span>
+            }
+<span class="nc" id="L402">        }</span>
+<span class="nc" id="L403">        return false;</span>
+    }
+
+    /**
+     * Verifica através do e-mail passado por parâmetro, se o mesmo corresponde a um Prestador registado na Empresa
+     *
+     * @param email e-mail que vai ser comparado com os existentes no contentor de Prestadores
+     * @return true, se o e-mail passado por parâmetro corresponde a um Prestador da Empresa false, se o e-mail passado por parâmetro não corresponde a um Prestador da Empresa
+     */
+    public boolean confirmaExistenciaPrestadorByEmail(String email) {
+<span class="pc bpc" id="L413" title="1 of 2 branches missed.">        for (PrestadorServico prestador : this.registoPrestadores) {</span>
+<span class="pc bpc" id="L414" title="1 of 2 branches missed.">            if (prestador.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L415">                return true;</span>
+            }
+<span class="nc" id="L417">        }</span>
+<span class="nc" id="L418">        return false;</span>
+    }
+
+    /**
+     * Verifica através do e-mail passado por parâmetro, se o mesmo corresponde a um Administrativo registado na Empresa
+     *
+     * @param email e-mail que vai ser comparado com os existentes no contentor de Administrativo
+     * @return true, se o e-mail passado por parâmetro corresponde a um Administrativo da Empresa false, se o e-mail passado por parâmetro não corresponde a um Administrativo da Empresa
+     */
+    public boolean confirmaExistenciaAdminByEmail(String email) {
+<span class="pc bpc" id="L428" title="1 of 2 branches missed.">        for (Administrativo admin : this.registoAdmins) {</span>
+<span class="pc bpc" id="L429" title="1 of 2 branches missed.">            if (admin.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L430">                return true;</span>
+            }
+<span class="nc" id="L432">        }</span>
+<span class="nc" id="L433">        return false;</span>
+    }
+
+    /**
+     * Verifica através do ID passado por parâmetro, se o mesmo corresponde a uma Categoria definida da Empresa
+     *
+     * @param catID ID que vai ser comparado com os existentes no contentor de Categorias
+     * @return true, se o ID passado por parâmetro corresponde a uma Categoria definida na Empresa false, se o ID passado por parâmetro não corresponde a uma Categoria definida na Empresa
+     */
+    public boolean confirmaExistenciaCategoriaByID(String catID) {
+<span class="pc bpc" id="L443" title="1 of 2 branches missed.">        for (Categoria cat : this.registoCategorias) {</span>
+<span class="pc bpc" id="L444" title="1 of 2 branches missed.">            if (cat.getCatID().equalsIgnoreCase(catID)) {</span>
+<span class="fc" id="L445">                return true;</span>
+            }
+<span class="nc" id="L447">        }</span>
+<span class="nc" id="L448">        return false;</span>
+    }
+
+    /**
+     * Verifica através do ID passado por parâmetro, se o mesmo corresponde a uma Serviço definido da Empresa
+     *
+     * @param servID ID que vai ser comparado com os existentes no contentor de Serviços
+     * @return true, se o ID passado por parâmetro corresponde a um Serviço definido na Empresa false, se o ID passado por parâmetro não corresponde a um Serviço definido na Empresa
+     */
+    public boolean confirmaExistenciaServicoByID(String servID) {
+<span class="pc bpc" id="L458" title="1 of 2 branches missed.">        for (Servico serv : this.registoServicos) {</span>
+<span class="pc bpc" id="L459" title="1 of 2 branches missed.">            if (serv.getServID().equalsIgnoreCase(servID)) {</span>
+<span class="fc" id="L460">                return true;</span>
+            }
+<span class="nc" id="L462">        }</span>
+<span class="nc" id="L463">        return false;</span>
+    }
+
+    /**
+     * Devolve o Cliente que é detentor do e-mail que é passado por parâmetro
+     *
+     * @param email e-mail que vai ser comparado com os existentes
+     * @return Cliente , se o detentor do e-mail que é passado por parâmetro existe null, se não existe um Cliente correspondente ao e-mail
+     */
+    public Cliente getClienteByEmail(String email) {
+<span class="pc bpc" id="L473" title="1 of 2 branches missed.">        for (Cliente cliente : this.registoClientes) {</span>
+<span class="pc bpc" id="L474" title="1 of 2 branches missed.">            if (cliente.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L475">                return cliente;</span>
+            }
+<span class="nc" id="L477">        }</span>
+<span class="nc" id="L478">        return null;</span>
+    }
+
+    /**
+     * Devolve o PrestadorServico que é detentor do e-mail que é passado por parâmetro
+     *
+     * @param email e-mail que vai ser comparado com os existentes
+     * @return PrestadorServico, se o detentor do e-mail que é passado por parâmetro existe 
+     *                     null, se não existe um PrestadorServico correspondente ao e-mail
+     */
+    public PrestadorServico getPrestadorByEmail(String email) {
+<span class="pc bpc" id="L489" title="1 of 2 branches missed.">        for (PrestadorServico prest : this.registoPrestadores) {</span>
+<span class="pc bpc" id="L490" title="1 of 2 branches missed.">            if (prest.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L491">                return prest;</span>
+            }
+<span class="nc" id="L493">        }</span>
+<span class="nc" id="L494">        return null;</span>
+    }
+    
+    /**
+     * Devolve o PrestadorServico que é detentor do número mecanográfico que é passado por parâmetro
+     * @param mecanografico número mecanográfico do Prestador
+     * @return PrestadorServico, se o detentor do número que é passado por parâmetro existe
+     *                     null, se não existe um PrestadorServico correspondente ao número mecanográfico
+     */
+    public PrestadorServico getPrestadorByMecanografico(String mecanografico){
+<span class="pc bpc" id="L504" title="1 of 2 branches missed.">        for (PrestadorServico prest : this.registoPrestadores) {</span>
+<span class="pc bpc" id="L505" title="1 of 2 branches missed.">            if (prest.getMecanografico().equals(mecanografico)) {</span>
+<span class="fc" id="L506">                return prest;</span>
+            }
+<span class="nc" id="L508">        }</span>
+<span class="nc" id="L509">        return null;</span>
+    }
+
+    /**
+     * Devolve o Administrativo que é detentor do e-mail que é passado por parâmetro
+     *
+     * @param email e-mail que vai ser comparado com os existentes
+     * @return Administrativo, se o detentor do e-mail que é passado por parâmetro existe null, se não existe um Administrativo correspondente ao e-mail
+     */
+    public Administrativo getAdminByEmail(String email) {
+<span class="pc bpc" id="L519" title="1 of 2 branches missed.">        for (Administrativo admin : this.registoAdmins) {</span>
+<span class="pc bpc" id="L520" title="1 of 2 branches missed.">            if (admin.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L521">                return admin;</span>
+            }
+<span class="nc" id="L523">        }</span>
+<span class="nc" id="L524">        return null;</span>
+    }
+
+    /**
+     * Devolve o Utilizador que é detentor do e-mail que é passado por parâmetro
+     *
+     * @param email e-mail que vai ser comparado com os existentes
+     * @return Cliente, se o detentor do e-mail passado por parâmetro é Cliente PrestadorServico, se o detentor do e-mail passado por parâmetro é PrestadorServico Administrativo, se o detentor do e-mail passado por parâmetro é Administrativo null, se o detentor do e-mail passado por parâmetro não existe
+     */
+    public Utilizador getUtilizadorByEmail(String email) {
+<span class="pc bpc" id="L534" title="1 of 2 branches missed.">        for (Cliente cliente : this.registoClientes) {</span>
+<span class="nc bnc" id="L535" title="All 2 branches missed.">            if (cliente.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="nc" id="L536">                return (Cliente) cliente;</span>
+            }
+<span class="nc" id="L538">        }</span>
+<span class="pc bpc" id="L539" title="1 of 2 branches missed.">        for (PrestadorServico prest : this.registoPrestadores) {</span>
+<span class="nc bnc" id="L540" title="All 2 branches missed.">            if (prest.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="nc" id="L541">                return (PrestadorServico) prest;</span>
+            }
+<span class="nc" id="L543">        }</span>
+<span class="pc bpc" id="L544" title="1 of 2 branches missed.">        for (Administrativo admin : this.registoAdmins) {</span>
+<span class="pc bpc" id="L545" title="1 of 2 branches missed.">            if (admin.getEmail().equalsIgnoreCase(email)) {</span>
+<span class="fc" id="L546">                return (Administrativo) admin;</span>
+            }
+<span class="nc" id="L548">        }</span>
+<span class="nc" id="L549">        return null;</span>
+    }
+    
+    /**
+     * Devolve o Serviço correspondente a um determinado ID de categoria e ID de serviço
+     * @param servID ID de serviço
+     * @return Serviço correspondente a um determinado ID de categoria e ID de serviço
+     */
+    public Servico getServicoByServID(String servID){
+<span class="pc bpc" id="L558" title="1 of 2 branches missed.">        for(Servico servico : this.registoServicos){</span>
+<span class="pc bpc" id="L559" title="1 of 2 branches missed.">            if (servico.getServID().equalsIgnoreCase(servID)){</span>
+<span class="fc" id="L560">                return servico;</span>
+            }
+<span class="nc" id="L562">        }</span>
+<span class="nc" id="L563">        return null;</span>
+    }
+    /**
+     * Devolve o Serviço que corresponde à categoria escolhida, e à escolha de serviço feita em &quot;escolha de serviço&quot;
+     * @param catID categoria selecionada previamente
+     * @param resposta escolha de serviço no case/switch anterior
+     * @return Serviço que corresponde à categoria escolhida, e à escolha de serviço feita em &quot;escolha de serviço&quot;
+     */
+    public Servico getServicoByEscolhaServico(String catID, int resposta){
+<span class="nc bnc" id="L572" title="All 22 branches missed.">        switch (catID){</span>
+            case &quot;cat01&quot;:
+<span class="nc bnc" id="L574" title="All 2 branches missed.">                for( Servico servico : this.registoServicos){</span>
+<span class="nc" id="L575">                    String [] IDsContabilidade = {&quot;cont1&quot;, &quot;cont2&quot;, &quot;cont3&quot;};</span>
+<span class="nc" id="L576">                    String opcao = IDsContabilidade[resposta - 1];</span>
+<span class="nc bnc" id="L577" title="All 2 branches missed.">                    if (opcao.equalsIgnoreCase(servico.getServID())){</span>
+<span class="nc" id="L578">                        return servico;</span>
+                    }
+<span class="nc" id="L580">                }</span>
+<span class="nc" id="L581">                break;</span>
+            case &quot;cat02&quot;:
+<span class="nc bnc" id="L583" title="All 2 branches missed.">                for( Servico servico : this.registoServicos){</span>
+<span class="nc" id="L584">                    String [] IDsRestauracao = {&quot;rest1&quot;, &quot;rest2&quot;, &quot;rest3&quot;};</span>
+<span class="nc" id="L585">                    String opcao = IDsRestauracao[resposta - 1];</span>
+<span class="nc bnc" id="L586" title="All 2 branches missed.">                    if (opcao.equalsIgnoreCase(servico.getServID())){</span>
+<span class="nc" id="L587">                        return servico;</span>
+                    }
+<span class="nc" id="L589">                }</span>
+<span class="nc" id="L590">                break;</span>
+            case &quot;cat03&quot;:
+<span class="nc bnc" id="L592" title="All 2 branches missed.">                for( Servico servico : this.registoServicos){</span>
+<span class="nc" id="L593">                    String [] IDsManutencao = {&quot;man1&quot;, &quot;man2&quot;, &quot;man3&quot;};</span>
+<span class="nc" id="L594">                    String opcao = IDsManutencao[resposta - 1];</span>
+<span class="nc bnc" id="L595" title="All 2 branches missed.">                    if (opcao.equalsIgnoreCase(servico.getServID())){</span>
+<span class="nc" id="L596">                        return servico;</span>
+                    }
+<span class="nc" id="L598">                }</span>
+<span class="nc" id="L599">                break;</span>
+            case &quot;cat04&quot;:
+<span class="nc bnc" id="L601" title="All 2 branches missed.">                for( Servico servico : this.registoServicos){</span>
+<span class="nc" id="L602">                    String [] IDsConstrucao = {&quot;con1&quot;, &quot;con2&quot;, &quot;con3&quot;};</span>
+<span class="nc" id="L603">                    String opcao = IDsConstrucao[resposta - 1];</span>
+<span class="nc bnc" id="L604" title="All 2 branches missed.">                    if (opcao.equalsIgnoreCase(servico.getServID())){</span>
+<span class="nc" id="L605">                        return servico;</span>
+                    }
+<span class="nc" id="L607">                }</span>
+<span class="nc" id="L608">                break;</span>
+            case &quot;cat05&quot;:
+<span class="nc bnc" id="L610" title="All 2 branches missed.">                for( Servico servico : this.registoServicos){</span>
+<span class="nc" id="L611">                    String [] IDsCriatividade = {&quot;cri1&quot;, &quot;cri2&quot;, &quot;cri3&quot;};</span>
+<span class="nc" id="L612">                    String opcao = IDsCriatividade[resposta - 1];</span>
+<span class="nc bnc" id="L613" title="All 2 branches missed.">                    if (opcao.equalsIgnoreCase(servico.getServID())){</span>
+<span class="nc" id="L614">                        return servico;</span>
+                    }
+<span class="nc" id="L616">                }</span>
+                break;
+        }
+<span class="nc" id="L619">        return null;</span>
+    }
+    
+    /**
+     * Devolve o pedido de prestação de serviço, através do seu número atribuido
+     * @param numero número atribuido
+     * @return pedido de prestação de serviço, através do seu número atribuido
+     */
+    public PedidoPrestacaoServico getPedidoByNumero(int numero){
+<span class="pc bpc" id="L628" title="1 of 2 branches missed.">        for(PedidoPrestacaoServico pps: registoPedidos){</span>
+<span class="fc bfc" id="L629" title="All 2 branches covered.">            if(pps.getNumeroAtribuido() == numero){</span>
+<span class="fc" id="L630">                return pps;</span>
+            }
+<span class="fc" id="L632">        }</span>
+<span class="nc" id="L633">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

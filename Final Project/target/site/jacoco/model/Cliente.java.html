@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cliente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Cliente.java</span></div><h1>Cliente.java</h1><pre class="source lang-java linenums">package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class Cliente extends Utilizador{
+    /**
+     * NIF de um cliente
+     */
+    private String NIF;
+    /**
+     * contacto telefónico de um cliente
+     */
+    private String telefone;
+    /**
+     * Contentor que irá armazenar os endereços postal de um cliente
+     */
+<span class="pc" id="L22">    private List&lt;EnderecoPostal&gt; listaEnderecos = new ArrayList&lt;EnderecoPostal&gt;();</span>
+    
+    /**
+     * NIF de um cliente por omissão
+     */
+    private static final String NIF_POR_OMISSAO = &quot;sem NIF definido&quot;;
+    /**
+     * contacto telefónico de um cliente por omissão
+     */
+    private static final String TEL_POR_OMISSAO = &quot;sem contacto telefónico&quot;;
+    /**
+     * Constrói uma instância de Cliente que recebe nome, email, password, NIF, telefone, enderecoPostal
+     * @param nome Nome de um Cliente
+     * @param email e-mail de um Cliente
+     * @param password password de um Cliente
+     * @param NIF NIF de um Cliente
+     * @param telefone telefone de um Cliente
+     * @param enderecoPostal endereço postal de um Cliente
+     */
+    public Cliente(String nome, String email, String password, String NIF, String telefone, EnderecoPostal enderecoPostal){
+<span class="fc" id="L42">        super(nome, email, password);</span>
+<span class="fc" id="L43">        this.NIF = NIF;</span>
+<span class="fc" id="L44">        this.telefone = telefone;</span>
+<span class="fc" id="L45">        listaEnderecos.add(enderecoPostal);</span>
+<span class="fc" id="L46">    }</span>
+    
+    /**
+     * Constrói uma instância de Cliente que é cópia de uma instância Cliente passada por parâmetro
+     * @param outroCliente Cliente que vai ser 'copiado'
+     */
+    public Cliente(Cliente outroCliente){
+<span class="nc" id="L53">        super(outroCliente);</span>
+<span class="nc" id="L54">        this.NIF = outroCliente.NIF;</span>
+<span class="nc" id="L55">        this.telefone = outroCliente.telefone;</span>
+<span class="nc" id="L56">        this.listaEnderecos = outroCliente.listaEnderecos;</span>
+<span class="nc" id="L57">    }</span>
+    
+    /**
+     * Constrói uma instância de Cliente com os valores por omissão
+     */
+    public Cliente(){
+<span class="fc" id="L63">        super();</span>
+<span class="fc" id="L64">        NIF = NIF_POR_OMISSAO;</span>
+<span class="fc" id="L65">        telefone = TEL_POR_OMISSAO;</span>
+<span class="fc" id="L66">    }</span>
+    
+    /**
+     * Devolve o NIF do Cliente
+     * @return NIF do Cliente
+     */
+    public String getNIF(){
+<span class="nc" id="L73">        return NIF;</span>
+    }
+    
+    /**
+     * Devolve o contacto telefónico do Cliente
+     * @return contacto telefónico do Cliente
+     */
+    public String getTelefone(){
+<span class="nc" id="L81">        return telefone;</span>
+    }
+    
+    /**
+     * Devolve a lista de endereços postais do Cliente
+     * @return lista de endereços postais do Cliente
+     */
+    public List&lt;EnderecoPostal&gt; getListaEnderecos(){
+<span class="fc" id="L89">        return listaEnderecos;</span>
+    }
+    
+    /**
+     * Modifica o NIF do Cliente
+     * @param NIF NIF do Cliente
+     */
+    public void setNIF(String NIF){
+<span class="nc bnc" id="L97" title="All 4 branches missed.">        if(NIF == null || NIF.isEmpty())</span>
+<span class="nc" id="L98">            throw new IllegalArgumentException(&quot;O argumento 'NIF' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L99">        this.NIF = NIF;</span>
+<span class="nc" id="L100">    }</span>
+    
+    /**
+     * Modifica o contacto telefónico do Cliente
+     * @param telefone contacto telefónico do Cliente
+     */
+    public void setTelefone(String telefone){
+<span class="nc bnc" id="L107" title="All 4 branches missed.">        if(telefone == null || telefone.isEmpty())</span>
+<span class="nc" id="L108">            throw new IllegalArgumentException(&quot;O argumento 'telefone' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L109">        this.telefone = telefone;</span>
+<span class="nc" id="L110">    }</span>
+    
+    /**
+     * Modifica a lista de endereços postais do Cliente
+     * @param listaEnderecos lista de endereços postais do Cliente
+     */
+    public void setListaEnderecos(List&lt;EnderecoPostal&gt; listaEnderecos){
+<span class="nc bnc" id="L117" title="All 4 branches missed.">        if(listaEnderecos == null || listaEnderecos.isEmpty())</span>
+<span class="nc" id="L118">            throw new IllegalArgumentException(&quot;O argumento 'lista de endereços' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L119">        this.listaEnderecos = listaEnderecos;</span>
+<span class="nc" id="L120">    }</span>
+    
+    /**
+     * Adiciona um endereço postal ao contentor de endereços da instância Cliente
+     * @param novoEndereco endereço que vai ser adicionado à lista
+     */
+    public void adicionarEndereco(EnderecoPostal novoEndereco){
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if(novoEndereco == null)</span>
+<span class="nc" id="L128">            throw new IllegalArgumentException(&quot;O argumento 'endereço' a ser adicionado ser nulo&quot;);</span>
+<span class="nc" id="L129">        listaEnderecos.add(novoEndereco);</span>
+<span class="nc" id="L130">    }</span>
+    
+    /**
+     * Imprime a lista com os endereços do Cliente
+     */
+    public void listarEnderecos() {
+<span class="nc bnc" id="L136" title="All 2 branches missed.">        for (EnderecoPostal endereco : listaEnderecos) {</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            if(endereco != null){</span>
+<span class="nc" id="L138">                System.out.println(&quot;(&quot;+ (listaEnderecos.indexOf(endereco)+1) +&quot;)\n&quot; + endereco.toString());</span>
+            }
+<span class="nc" id="L140">        }</span>
+<span class="nc" id="L141">    }</span>
+    
+    /**
+     * Remove um determinado endereço postal do contentor de endereços do Cliente
+     * @param endereco endereco que vai ser removido do contentor
+     * @return false, se o endereço passado por parâmetro não existir no contentor
+     */
+    public boolean removerEndereco(EnderecoPostal endereco){
+<span class="fc" id="L149">        return listaEnderecos.remove(endereco);</span>
+    }
+    
+    /**
+     * Devolve um endereço baseado numa escolha feita, escolha essa passada por parâmetro
+     * @param numero escolha feita que vai ser comparada com o index do endereço desejado
+     * @return endereço postal com index igual ao passado por parâmetro
+     */
+    public EnderecoPostal getEnderecoByNumero(int numero){
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">        for(EnderecoPostal endPostal: listaEnderecos){</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            if(listaEnderecos.indexOf(endPostal)+1 == numero){</span>
+<span class="fc" id="L160">                return endPostal;</span>
+            }
+<span class="fc" id="L162">        }</span>
+<span class="nc" id="L163">        return null;</span>
+    }    
+  
+    /**
+     * Compara dois objectos Cliente através do NIF e contacto telefónico
+     * sendo os objectos considerados iguais apenas quando estas 2 características forem iguais
+     * @param outroObjecto objecto que vai ser comparado com o objecto que chama o método
+     * @return true, se as referências dos objectos a ser comparados apontam para o mesmo objecto
+     *         false, se o objecto comparado for nulo ou as classes dos dois objectos forem diferentes
+     *         true, se o NIF e telefone dos dois objectos forem iguais
+     */
+    @Override
+    public boolean equals(Object outroObjecto) {
+<span class="fc bfc" id="L176" title="All 2 branches covered.">        if (this == outroObjecto) {</span>
+<span class="fc" id="L177">            return true;</span>
+        }
+<span class="pc bpc" id="L179" title="2 of 4 branches missed.">        if (outroObjecto == null || this.getClass() != outroObjecto.getClass()) {</span>
+<span class="nc" id="L180">            return false;</span>
+        }
+<span class="fc" id="L182">        Cliente outroCliente = (Cliente) outroObjecto;</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">            return this.NIF.equalsIgnoreCase(outroCliente.NIF)</span>
+<span class="pc bpc" id="L184" title="1 of 2 branches missed.">                &amp;&amp; this.getNome().equalsIgnoreCase(outroCliente.getNome())</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">                &amp;&amp; this.getPassword().equalsIgnoreCase(outroCliente.getPassword())</span>
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">                &amp;&amp; this.telefone.equalsIgnoreCase(outroCliente.telefone);</span>
+    }    
+    
+    /**
+     * Devolve as características do Cliente (nome,NIF,contacto)
+     * @return características do Cliente (nome,NIF,contacto)
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L195">        return String.format(&quot;Cliente: %s , detentor do NIF nº %s.\nContacto: %s&quot;,this.getNome(),NIF,telefone);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

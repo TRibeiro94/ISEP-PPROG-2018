@@ -1,0 +1,8 @@
+Tiago Ribeiro / tiago@sapo.pt / tiagopassword / 123432567 / 991765443 / Rua Julio Dinis / Porto / 4100-000 / 41.149304 / 8.610880
+Carlos Almeida / carlos@sapo.pt / carlospassword / 567455321 / 919123888 / Avenida Cosme Damiao / Lisboa / 3900-123 / 34.213923 / 10.889356
+Pedro Água / pedro@sapo.pt / pedropassword / 908776100 / 923776451 / Rua Torrinha / Matosinhos / 4677-980 / 5.123412 / 30.132422
+Ana Luisa / ana@sapo.pt / anapassword / 178998571 / 913665298 / Rua Salgueiro Maia / Aveiro / 5622-190 / 12.334891 / 21.123122
+António Morais / antonio@sapo.pt / antoniopassword / 786212889 / 932777127 / Travessa da Madeira / Perafita / 4111-230 / 9.149304 / 8.610880
+Margarida Morgado / margarida@sapo.pt / margaridapassword / 786776129 / 967541109 / Rua Sousa Pinto / Ramalde / 4521-133 / 50.213923 / 35.877859
+Matilde Soares / matilde@sapo.pt / matildepassword / 567213998 / 913267511 / Rua 9 Julho / Algarve / 4901-678 / 10.128912 / 30.12223149
+Tomás Dias / tomas@sapo.pt / tomaspassword / 256143870 / 913970084 / Rua António Ferreira / Beja / 1234-334 / 30.785391 / 10.133810

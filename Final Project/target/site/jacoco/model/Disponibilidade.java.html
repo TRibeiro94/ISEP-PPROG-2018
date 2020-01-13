@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Disponibilidade.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Disponibilidade.java</span></div><h1>Disponibilidade.java</h1><pre class="source lang-java linenums">package model;
+
+import Utils.Data;
+import Utils.Tempo;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class Disponibilidade {
+    
+    /**
+     * Data de inicio de disponibilidade do Prestador de Serviço
+     */
+    private Data dataInicio;
+    /**
+     * Data de fim de disponibilidade do Prestador de Serviço
+     */
+    private Data dataFim;
+    /**
+     * Hora de inicio de disponibilidade do Prestador de Serviço
+     */
+    private Tempo horaInicio;
+    /**
+     * Hora de fim de disponibilidade do Prestador de Serviço
+     */
+    private Tempo horaFim;
+    /**
+     * Data de inicio de disponibilidade do Prestador de Serviço por omissão
+     */
+<span class="fc" id="L31">    private static final Data DATA_INICIO_POR_OMISSAO = new Data();</span>
+    /**
+     * Data de fim de disponibilidade do Prestador de Serviço por omissão
+     */
+<span class="fc" id="L35">    private static final Data DATA_FIM_POR_OMISSAO = new Data();</span>
+    /**
+     * Hora de inicio de disponibilidade do Prestador de Serviço por omissão
+     */
+<span class="fc" id="L39">    private static final Tempo TEMPO_INICIO_POR_OMISSAO = new Tempo();</span>
+    /**
+     * Hora de fim de disponibilidade do Prestador de Serviço por omissão
+     */
+<span class="fc" id="L43">    private static final Tempo TEMPO_FIM_POR_OMISSAO = new Tempo();</span>
+    
+    /**
+     * Constrói uma instância de Disponibilidade que recebe ano, mes, dia de inicio e de fim, hora inicio e hora de fim
+     * @param anoInicio ano de inicio de disponibilidade
+     * @param mesInicio mes de ano de inicio de disponibilidade
+     * @param diaInicio dia do mes de inicio de disponibilidade
+     * @param anoFim ano de fim de disponibilidade
+     * @param mesFim mes de ano de fim de disponibilidade
+     * @param diaFim dia do mes de fim de disponibilidade
+     * @param horaInicio hora de inicio de disponibilidade
+     * @param horaFim hora de fim de disponibilidade
+     */
+<span class="nc" id="L56">    public Disponibilidade(int anoInicio, int mesInicio, int diaInicio, int anoFim, int mesFim, int diaFim, int horaInicio, int horaFim){</span>
+<span class="nc" id="L57">        this.dataInicio = new Data(anoInicio, mesInicio, diaInicio);</span>
+<span class="nc" id="L58">        this.dataFim = new Data(anoFim, mesFim, diaFim);</span>
+<span class="nc" id="L59">        this.horaInicio = new Tempo(horaInicio);</span>
+<span class="nc" id="L60">        this.horaFim = new Tempo(horaFim);</span>
+<span class="nc" id="L61">    }</span>
+    /**
+     * Constrói uma instância de Disponibilidade que recebe Data de inicio, de fim, hora de inicio e fim
+     * @param dataInicio ano/mes/dia de inicio de disponibilidade
+     * @param dataFim ano/mes/dia de fim de disponibilidade
+     * @param horaInicio hora de inicio de disponibilidade
+     * @param horaFim hora de fim de disponibilidade
+     */
+<span class="fc" id="L69">    public Disponibilidade(Data dataInicio, Data dataFim, Tempo horaInicio, Tempo horaFim){</span>
+<span class="fc" id="L70">        this.dataInicio = new Data(dataInicio);</span>
+<span class="fc" id="L71">        this.dataFim = new Data(dataFim);</span>
+<span class="fc" id="L72">        this.horaInicio = new Tempo(horaInicio);</span>
+<span class="fc" id="L73">        this.horaFim = new Tempo(horaFim);</span>
+<span class="fc" id="L74">    }</span>
+    /**
+     * Constrói uma instância de Disponibilidade que é 'cópia' da instância Disponibilidade que é passada por parâmetro
+     * @param outraDisponibilidade Disponibilidade que vai ser 'copiada'
+     */
+<span class="nc" id="L79">    public Disponibilidade(Disponibilidade outraDisponibilidade){</span>
+<span class="nc" id="L80">        this.dataInicio = outraDisponibilidade.dataInicio;</span>
+<span class="nc" id="L81">        this.dataFim = outraDisponibilidade.dataFim;</span>
+<span class="nc" id="L82">        this.horaInicio = outraDisponibilidade.horaInicio;</span>
+<span class="nc" id="L83">        this.horaFim = outraDisponibilidade.horaFim;</span>
+<span class="nc" id="L84">    }</span>
+    /**
+     * Constrói uma instância de Disponibilidade com os valores por omissão
+     */
+<span class="nc" id="L88">    public Disponibilidade(){</span>
+<span class="nc" id="L89">        dataInicio = DATA_INICIO_POR_OMISSAO;</span>
+<span class="nc" id="L90">        dataFim = DATA_FIM_POR_OMISSAO;</span>
+<span class="nc" id="L91">        horaInicio = TEMPO_INICIO_POR_OMISSAO;</span>
+<span class="nc" id="L92">        horaFim = TEMPO_FIM_POR_OMISSAO;</span>
+<span class="nc" id="L93">    }</span>
+    /**
+     * Devolve a Data de inicio de disponibilidade 
+     * @return Data de inicio de disponibilidade 
+     */
+    public Data getDataInicio(){
+<span class="nc" id="L99">        return new Data(dataInicio);</span>
+    }
+    /**
+     * Devolve a Data de fim de disponibilidade
+     * @return Data de fim de disponibilidade
+     */
+    public Data getDataFim(){
+<span class="nc" id="L106">        return new Data(dataFim);</span>
+    }
+    /**
+     * Devolve a hora de inicio de disponibilidade
+     * @return hora de inicio de disponibilidade
+     */
+    public Tempo getHoraInicio(){
+<span class="nc" id="L113">        return new Tempo(horaInicio);</span>
+    }
+    /**
+     * Devolve a hora de fim de disponibilidade
+     * @return hora de fim de disponibilidade
+     */
+    public Tempo getHoraFim(){
+<span class="nc" id="L120">        return new Tempo(horaFim);</span>
+    }
+    /**
+     * Modifica a data de inicio de disponibilidade
+     * @param dataInicio data de inicio de disponibilidade
+     */
+    public void setDataInicio(Data dataInicio){
+<span class="nc" id="L127">        this.dataInicio.setData(dataInicio.getAno(), dataInicio.getMes(), dataInicio.getDia());</span>
+<span class="nc" id="L128">    }</span>
+    /**
+     * Modifica a data de inicio de disponibilidade
+     * @param ano ano de inicio de disponibilidade
+     * @param mes mes do ano de inicio de disponibilidade
+     * @param dia dia do mes de inicio de disponibilidade
+     */
+    public void setDataInicio(int ano, int mes, int dia) {
+<span class="nc" id="L136">        this.dataInicio.setData(ano, mes, dia);</span>
+<span class="nc" id="L137">    }</span>
+    /**
+     * Modifica a data de fim de disponibilidade
+     * @param dataFim data de fim de disponibilidade
+     */
+    public void setDataFim(Data dataFim){
+<span class="nc" id="L143">        this.dataFim.setData(dataFim.getAno(), dataFim.getMes(), dataFim.getDia());</span>
+<span class="nc" id="L144">    }</span>
+    /**
+     * Modifica a data de fim de disponibilidade
+     * @param ano ano de fim de disponibilidade
+     * @param mes mes do ano de fim de disponibilidade
+     * @param dia dia do mes de fim de disponibilidade
+     */
+    public void setDataFim(int ano, int mes, int dia){
+<span class="nc" id="L152">        this.dataFim.setData(ano, mes, dia);</span>
+<span class="nc" id="L153">    }</span>
+    /**
+     * Modifica a hora de inicio de disponibilidade
+     * @param horaInicio hora de inicio de disponibilidade
+     */
+    public void setHoraInicio(Tempo horaInicio){
+<span class="nc" id="L159">        this.horaInicio.setTempo(horaInicio.getHoras());</span>
+<span class="nc" id="L160">    }</span>
+    /**
+     * Modifica a hora de inicio de disponibilidade
+     * @param horaInicio hora de inicio de disponibilidade
+     */
+    public void setHoraInicio(int horaInicio){
+<span class="nc" id="L166">        this.horaInicio.setTempo(horaInicio);</span>
+<span class="nc" id="L167">    }</span>
+    /**
+     * Modifica a hora de fim de disponibilidade
+     * @param horaFim hora de fim de disponibilidade
+     */
+    public void setHoraFim(Tempo horaFim){
+<span class="nc" id="L173">        this.horaInicio.setTempo(horaInicio.getHoras());</span>
+<span class="nc" id="L174">    }</span>
+    /**
+     * Modifica a hora de fim de disponibilidade
+     * @param horaFim hora de fim de disponibilidade
+     */
+    public void setHoraFim(int horaFim){
+<span class="nc" id="L180">        this.horaInicio.setTempo(horaFim);</span>
+<span class="nc" id="L181">    }  </span>
+    /**
+     * Devolve as características da Disponibilidade
+     * Data(inicio até fim) e horario(inicio ate fim)
+     * @return características da Disponibilidade
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L189">        return String.format(&quot;Disponibilidade de &quot; + dataInicio + &quot; a &quot; + dataFim + &quot;.\nNo horário: &quot;+horaInicio.getHoras()+&quot;:00h até &quot;+horaFim.getHoras()+&quot;:00h.&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

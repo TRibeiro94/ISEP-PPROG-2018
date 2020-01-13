@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Categoria.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Categoria.java</span></div><h1>Categoria.java</h1><pre class="source lang-java linenums">package model;
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+class Categoria {
+    /**
+     * Código único da categoria
+     */
+    private String catID;
+    /**
+     * descrição da Categoria
+     */
+    private String descricao;
+    /**
+     * Código único da categoria por omissão
+     */
+    private static final String ID_POR_OMISSAO = &quot;cat0&quot;;
+    /**
+     * Descrição da Categoria por omissão
+     */
+    private static final String DESC_POR_OMISSAO = &quot;sem descrição&quot;;
+    /**
+     * Constrói uma instância de Categoria que recebe o seu código/identificador único e a sua descrição
+     * 
+     * @param catID Código único da categoria
+     * @param descricao descrição da Categoria
+     */
+<span class="fc" id="L30">    public Categoria(String catID, String descricao){</span>
+<span class="fc" id="L31">        this.catID = catID;</span>
+<span class="fc" id="L32">        this.descricao = descricao;</span>
+<span class="fc" id="L33">    }</span>
+    /**
+     * Constrói uma instância de Categoria que é cópia de uma instância Categoria passada por parâmetro
+     * @param outraCategoria categoria que vai ser copiada
+     */
+<span class="nc" id="L38">    public Categoria(Categoria outraCategoria){</span>
+<span class="nc" id="L39">        this.catID = outraCategoria.catID;</span>
+<span class="nc" id="L40">        this.descricao = outraCategoria.descricao;</span>
+<span class="nc" id="L41">    }</span>
+    /**
+     * Constrói uma instância de Categoria com os valores por omissão
+     */
+<span class="fc" id="L45">    public Categoria(){</span>
+<span class="fc" id="L46">        catID = ID_POR_OMISSAO;</span>
+<span class="fc" id="L47">        descricao = DESC_POR_OMISSAO;</span>
+<span class="fc" id="L48">    }</span>
+    /**
+     * Devolve o código único da Categoria
+     * @return código único da Categoria
+     */
+    public String getCatID(){
+<span class="fc" id="L54">        return catID;</span>
+    }
+    /**
+     * Devolve a descrição da Categoria
+     * @return descrição da Categoria
+     */
+    public String getDescricao(){
+<span class="nc" id="L61">        return descricao;</span>
+    }
+    /**
+     * Modifica o código único da Categoria
+     * @param catID código único da Categoria
+     */
+    public void setCatID(String catID){
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">        if(catID == null || catID.isEmpty())</span>
+<span class="nc" id="L69">            throw new IllegalArgumentException(&quot;O argumento 'ID da categoria' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="fc" id="L70">        this.catID = catID;</span>
+<span class="fc" id="L71">    }</span>
+    /**
+     * Modifica a descrição da Categoria
+     * @param descricao descrição da Categoria
+     */
+    public void setCatDescricao(String descricao){
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        if(descricao == null || descricao.isEmpty())</span>
+<span class="nc" id="L78">            throw new IllegalArgumentException(&quot;O argumento 'descrição da categoria' não deve estar vazio ou ser nulo&quot;);</span>
+<span class="nc" id="L79">        this.descricao = descricao;</span>
+<span class="nc" id="L80">    }</span>
+    
+    /**
+     * Compara dois objectos Categoria através do código único da mesma e da sua descrição
+     * sendo os objectos considerados iguais apenas quando estas 2 características forem iguais
+     * @param outroObjecto objecto que vai ser comparado com o objecto que chama o método
+     * @return true, se as referências dos objectos a ser comparados apontam para o mesmo objecto
+     *         false, se o objecto comparado for nulo ou as classes dos dois objectos forem diferentes
+     *         true, se o ID e a descrição dos dois objectos forem iguais
+     */
+    @Override
+    public boolean equals(Object outroObjecto) {
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (this == outroObjecto) {</span>
+<span class="fc" id="L93">            return true;</span>
+        }
+<span class="pc bpc" id="L95" title="2 of 4 branches missed.">        if (outroObjecto == null || this.getClass() != outroObjecto.getClass()) {</span>
+<span class="nc" id="L96">            return false;</span>
+        }
+<span class="fc" id="L98">        Categoria outraCategoria = (Categoria) outroObjecto;</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            return this.catID.equalsIgnoreCase(outraCategoria.catID)</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">                &amp;&amp; this.descricao.equalsIgnoreCase(outraCategoria.descricao);</span>
+    }    
+    
+    /**
+     * Devolve as características da Categoria(ID,descrição)
+     * @return Devolve as características da Categoria(ID,descrição)
+     */
+    @Override
+    public String toString(){
+<span class="nc" id="L109">        return String.format(&quot;Categoria: %s&quot;,descricao);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

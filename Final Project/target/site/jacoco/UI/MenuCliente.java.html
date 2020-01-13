@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuCliente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PPROG_1DE_1181444_1180809_TP3</a> &gt; <a href="index.source.html" class="el_package">UI</a> &gt; <span class="el_source">MenuCliente.java</span></div><h1>MenuCliente.java</h1><pre class="source lang-java linenums">package UI;
+
+import static UI.MenuLogin.input;
+import Utils.Data;
+import Utils.Tempo;
+import static Utils.Utilitarios.isNumeric;
+import static Utils.Utilitarios.calculoDoCusto;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import static java.lang.System.exit;
+import java.time.YearMonth;
+import java.util.Calendar;
+import model.AplicacaoGPSD;
+import model.CodigoPostal;
+import model.EnderecoPostal;
+import model.PedidoPrestacaoServico;
+import model.Servico;
+
+
+/**
+ * @author Tiago Ribeiro (1181444)
+ * @author Pedro Água (1180809)
+ */
+public class MenuCliente {
+
+<span class="nc" id="L27">    public MenuCliente() {</span>
+<span class="nc" id="L28">    }</span>
+
+    /**
+     * Imprime o menu a ser mostrado apenas a Clientes
+     */
+    public static void mostrarMenuCliente() {
+<span class="nc" id="L34">        System.out.println();</span>
+<span class="nc" id="L35">        System.out.println(&quot;Bem-vindo: &quot; + AplicacaoGPSD.empresa.getDesignacao());</span>
+<span class="nc" id="L36">        System.out.println(&quot;------------------&quot;);</span>
+<span class="nc" id="L37">        System.out.println(&quot;MENU CLIENTE&quot;);</span>
+<span class="nc" id="L38">        System.out.println(&quot;------------------\n&quot;);</span>
+<span class="nc" id="L39">        System.out.println(&quot;1- (UC6) Efetuar pedido de prestação de serviço\n&quot;</span>
+                         + &quot;2- (UC7) Adicionar um endereço à informação de Cliente\n&quot;
+                         + &quot;0- Sair&quot;);
+<span class="nc" id="L42">    }</span>
+    
+    /**
+     * Imprime o menu de Clientes enquanto o Cliente não faz uma escolha válida
+     * @param loginEmail e-mail do Cliente que fez login no sistema
+     */
+    public void loop(String loginEmail) {
+        
+            String escolha;
+            do {
+<span class="nc" id="L52">                mostrarMenuCliente();</span>
+<span class="nc" id="L53">                escolha = input.nextLine();</span>
+
+<span class="nc bnc" id="L55" title="All 14 branches missed.">                switch (escolha) {</span>
+                    case &quot;1&quot;:
+<span class="nc" id="L57">                        escolhaDeCategoria(loginEmail);</span>
+<span class="nc" id="L58">                        break;</span>
+                    case &quot;2&quot;:
+<span class="nc" id="L60">                        adicionarEndereco(loginEmail);</span>
+<span class="nc" id="L61">                        break;</span>
+                    case &quot;0&quot;:
+<span class="nc" id="L63">                        gravarFicheiroBinario(&quot;registoPedidos.ser&quot;);</span>
+<span class="nc" id="L64">                        exit(0);</span>
+                        break;
+                }
+<span class="nc bnc" id="L67" title="All 4 branches missed.">            } while (escolha != &quot;0&quot; || isNumeric(escolha) == false);</span>
+<span class="nc" id="L68">    }</span>
+    
+    /**
+     * Permite ao Cliente escolher uma Categoria disponível na Empresa, assim como permite o preenchimento
+     * dos dados subsequentes necessários para efetuar um Pedido
+     * @param loginEmail e-mail do Cliente
+     */
+    public void escolhaDeCategoria(String loginEmail) {
+
+        String resposta;
+        do {
+<span class="nc" id="L79">            mostrarCategorias();</span>
+<span class="nc" id="L80">            resposta = input.nextLine();</span>
+
+<span class="nc bnc" id="L82" title="All 25 branches missed.">            switch (resposta) {</span>
+                case &quot;1&quot;:
+<span class="nc" id="L84">                    String categoria1 = &quot;cat01&quot;;</span>
+<span class="nc" id="L85">                    escolhaDeServico(categoria1, loginEmail);</span>
+<span class="nc" id="L86">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L88">                    String categoria2 = &quot;cat02&quot;;</span>
+<span class="nc" id="L89">                    escolhaDeServico(categoria2, loginEmail);</span>
+<span class="nc" id="L90">                    break;</span>
+                case &quot;3&quot;:
+<span class="nc" id="L92">                    String categoria3 = &quot;cat03&quot;;</span>
+<span class="nc" id="L93">                    escolhaDeServico(categoria3, loginEmail);</span>
+<span class="nc" id="L94">                    break;</span>
+                case &quot;4&quot;:
+<span class="nc" id="L96">                    String categoria4 = &quot;cat04&quot;;</span>
+<span class="nc" id="L97">                    escolhaDeServico(categoria4, loginEmail);</span>
+<span class="nc" id="L98">                    break;</span>
+                case &quot;5&quot;:
+<span class="nc" id="L100">                    String categoria5 = &quot;cat05&quot;;</span>
+<span class="nc" id="L101">                    escolhaDeServico(categoria5, loginEmail);</span>
+<span class="nc" id="L102">                    break;</span>
+                case &quot;0&quot;:
+                    break;
+            }
+<span class="nc bnc" id="L106" title="All 4 branches missed.">        } while (resposta != &quot;0&quot; || isNumeric(resposta) == false);</span>
+<span class="nc" id="L107">    }</span>
+    
+    /**
+     * Imprime as Categorias da Empresa
+     */
+    public void mostrarCategorias() {
+<span class="nc" id="L113">        System.out.println(&quot;\nSelecione a Categoria que deseja:  (0 para cancelar)\n-------------------------------------------------&quot;);</span>
+<span class="nc" id="L114">        AplicacaoGPSD.empresa.listarCategorias();</span>
+<span class="nc" id="L115">    }</span>
+    
+    /**
+     * Permite ao Cliente escolher um serviço adjacente à categoria que escolheu previamente, assim como os
+     * dados subsequentes para efetuar um Pedido
+     * @param catID ID da Categoria escolhida previamente
+     * @param loginEmail e-mail do Cliente
+     */
+    public void escolhaDeServico(String catID, String loginEmail){
+<span class="nc" id="L124">        System.out.println(&quot;\nSelecione o Serviço que deseja:  (0 para cancelar)\n-------------------------------------------------&quot;);</span>
+        String resposta;
+        
+        do{
+<span class="nc" id="L128">            AplicacaoGPSD.empresa.listarServicosByCatID(catID);</span>
+<span class="nc" id="L129">            resposta = input.nextLine();</span>
+            
+<span class="nc bnc" id="L131" title="All 17 branches missed.">            switch (resposta){</span>
+                case &quot;1&quot;:
+<span class="nc" id="L133">                    Servico s1 = AplicacaoGPSD.empresa.getServicoByEscolhaServico(catID, Integer.parseInt(resposta));</span>
+<span class="nc" id="L134">                    System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L135">                    escolhaDeHorarioEnderecoEtarefa(loginEmail, s1);</span>
+<span class="nc" id="L136">                    break;</span>
+                case &quot;2&quot;:
+<span class="nc" id="L138">                    Servico s2 = AplicacaoGPSD.empresa.getServicoByEscolhaServico(catID, Integer.parseInt(resposta));</span>
+<span class="nc" id="L139">                    System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L140">                    escolhaDeHorarioEnderecoEtarefa(loginEmail, s2);</span>
+<span class="nc" id="L141">                    break;</span>
+                case &quot;3&quot;:
+<span class="nc" id="L143">                    Servico s3 = AplicacaoGPSD.empresa.getServicoByEscolhaServico(catID, Integer.parseInt(resposta));</span>
+<span class="nc" id="L144">                    System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L145">                    escolhaDeHorarioEnderecoEtarefa(loginEmail, s3);</span>
+<span class="nc" id="L146">                    break;</span>
+                case &quot;0&quot;:
+                    break;
+            }
+<span class="nc bnc" id="L150" title="All 4 branches missed.">        } while (resposta != &quot;0&quot; || isNumeric(resposta) == false);</span>
+<span class="nc" id="L151">    }</span>
+    
+    /**
+     * Possibilita o Cliente de escolhar data e horário para o serviço que deseja, assim como uma breve descrição
+     * da tarefa. Tem a hipótese de confirmar ou cancelar no fim o pedido com o seu custo já também calculado
+     * @param loginEmail e-mail do Cliente
+     * @param servico serviço escolhido pelo Cliente
+     */
+    public void escolhaDeHorarioEnderecoEtarefa(String loginEmail, Servico servico){
+        
+<span class="nc" id="L161">        System.out.println(&quot;\nData para o pedido:\n-----------------------&quot;);</span>
+<span class="nc" id="L162">        Data data = escolhaDeData();</span>
+        
+<span class="nc" id="L164">        System.out.println(&quot;\nHorário para início do pedido: (apenas hora)\n--------------------------------&quot;);</span>
+<span class="nc" id="L165">        Tempo horaInicio = escolhaHoraInicio();</span>
+        
+<span class="nc" id="L167">        System.out.println(&quot;\nHorário para término do pedido: (apenas hora)\n--------------------------------&quot;);</span>
+<span class="nc" id="L168">        Tempo horaFim = escolhaHoraFim(horaInicio);</span>
+        
+<span class="nc" id="L170">        double valorCustoTotal = calculoDoCusto(horaInicio.getHoras(), horaFim.getHoras(), servico.getCustoHora());</span>
+<span class="nc" id="L171">        String descricaoTarefa = descreverTarefa();</span>
+        
+<span class="nc" id="L173">        System.out.println(&quot;Selecione o Endereço (número no topo) onde deseja ver o seu pedido ser executado:\n&quot;);</span>
+<span class="nc" id="L174">        EnderecoPostal end = new EnderecoPostal(escolherEnderecoParaPrestacao(loginEmail));</span>
+        
+<span class="nc" id="L176">        System.out.println(&quot;\nConfirme o seguinte Pedido(S/N):\n&quot;);</span>
+        
+<span class="nc" id="L178">        PedidoPrestacaoServico pedido = new PedidoPrestacaoServico(servico, data, horaInicio, horaFim, descricaoTarefa, valorCustoTotal, end);</span>
+<span class="nc" id="L179">        System.out.println(pedido);</span>
+        
+<span class="nc" id="L181">        String resposta = input.nextLine();</span>
+        
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if(resposta.equalsIgnoreCase(&quot;s&quot;)){</span>
+            
+<span class="nc" id="L185">            AplicacaoGPSD.empresa.adicionarPedido(pedido);</span>
+            
+<span class="nc" id="L187">            MenuCliente m = new MenuCliente();</span>
+<span class="nc" id="L188">            m.loop(loginEmail);</span>
+            
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        }else if(resposta.equalsIgnoreCase(&quot;n&quot;)){</span>
+            
+<span class="nc" id="L192">            MenuCliente m = new MenuCliente();</span>
+<span class="nc" id="L193">            m.loop(loginEmail);</span>
+            
+<span class="nc" id="L195">        }else{</span>
+<span class="nc" id="L196">            System.out.println(&quot;\n\nInseriu uma resposta inválida. Por favor efetue novamente o seu pedido e certifique-se que insere uma resposta válida.\n\n&quot;);</span>
+<span class="nc" id="L197">            MenuCliente m = new MenuCliente();</span>
+<span class="nc" id="L198">            m.loop(loginEmail);</span>
+        }
+<span class="nc" id="L200">    }</span>
+
+    /**
+     * Possibilita o Cliente de inserir a data que deseja ver o seu pedido ser executado
+     * (ano , mes, dia)
+     * @return Data que deseja ver o seu pedido ser executado
+     */
+    public Data escolhaDeData() {
+
+<span class="nc" id="L209">        Calendar calendario = Calendar.getInstance();</span>
+
+<span class="nc" id="L211">        System.out.println(&quot;Ano:&quot;);</span>
+<span class="nc" id="L212">        String ano = input.nextLine();</span>
+
+<span class="nc bnc" id="L214" title="All 4 branches missed.">        while (isNumeric(ano) == false || (Integer.parseInt(ano) &lt; calendario.get(Calendar.YEAR))) {</span>
+<span class="nc" id="L215">            System.out.println(&quot;Ano inválido. Tente de novo:&quot;);</span>
+<span class="nc" id="L216">            ano = input.nextLine();</span>
+        }
+<span class="nc" id="L218">        int anoInicio = Integer.parseInt(ano);</span>
+
+<span class="nc" id="L220">        System.out.println(&quot;Mês:&quot;);</span>
+<span class="nc" id="L221">        String mes = input.nextLine();</span>
+
+<span class="nc bnc" id="L223" title="All 10 branches missed.">        while (isNumeric(mes) == false || (anoInicio == calendario.get(Calendar.YEAR) &amp;&amp; (Integer.parseInt(mes) &lt; (calendario.get(Calendar.MONTH) + 1))) || (Integer.parseInt(mes) &gt; 12) || (Integer.parseInt(mes) &lt;= 0)) {</span>
+<span class="nc" id="L224">            System.out.println(&quot;Mês inválido. Tente de novo:&quot;);</span>
+<span class="nc" id="L225">            mes = input.nextLine();</span>
+        }
+<span class="nc" id="L227">        int mesInicio = Integer.parseInt(mes);</span>
+        
+<span class="nc" id="L229">        YearMonth anoMes = YearMonth.of(anoInicio, mesInicio);</span>
+<span class="nc" id="L230">        int diasMes = anoMes.lengthOfMonth();</span>
+
+<span class="nc" id="L232">        System.out.println(&quot;Dia:&quot;);</span>
+<span class="nc" id="L233">        String dia = input.nextLine();</span>
+
+<span class="nc bnc" id="L235" title="All 12 branches missed.">        while (isNumeric(dia) == false || (Integer.parseInt(dia) &gt; diasMes) || (anoInicio == calendario.get(Calendar.YEAR) &amp;&amp; mesInicio == (calendario.get(Calendar.MONTH) + 1) &amp;&amp; (Integer.parseInt(dia) &lt; calendario.get(Calendar.DAY_OF_MONTH))) || (Integer.parseInt(dia) &lt;= 0)) {</span>
+<span class="nc" id="L236">            System.out.println(&quot;Dia inválido. Tente de novo:&quot;);</span>
+<span class="nc" id="L237">            dia = input.nextLine();</span>
+        }
+<span class="nc" id="L239">        int diaInicio = Integer.parseInt(dia);</span>
+
+<span class="nc" id="L241">        return new Data(anoInicio, mesInicio, diaInicio);</span>
+    }
+    
+    /**
+     * Possibilita o Cliente de inserir a hora de inicio do seu pedido de serviço
+     * @return hora de inicio do seu pedido de serviço
+     */
+    public Tempo escolhaHoraInicio() {
+
+<span class="nc" id="L250">        String inicio = input.nextLine();</span>
+<span class="nc bnc" id="L251" title="All 6 branches missed.">        while (isNumeric(inicio) == false || Integer.parseInt(inicio) &gt; 24 || Integer.parseInt(inicio) &lt;= 0) {</span>
+<span class="nc" id="L252">            System.out.println(&quot;Hora inválida. Tente de novo(formato 24h):&quot;);</span>
+<span class="nc" id="L253">            inicio = input.nextLine();</span>
+        }
+<span class="nc" id="L255">        int horaInicio = Integer.parseInt(inicio);</span>
+
+<span class="nc" id="L257">        return new Tempo(horaInicio);</span>
+    }
+    
+    /**
+     * Possibilita o Cliente de inserir a hora de fim do seu pedido de serviço
+     * @param horaInicio hora de inicio que foi introduzida previamente
+     * @return hora de fim do seu pedido de serviço
+     */
+    public Tempo escolhaHoraFim(Tempo horaInicio) {
+        
+<span class="nc" id="L267">        String fim = input.nextLine();</span>
+        
+<span class="nc bnc" id="L269" title="All 8 branches missed.">        while (isNumeric(fim) == false || Integer.parseInt(fim) &gt; 24 || (Integer.parseInt(fim) &lt;= 0) || Integer.parseInt(fim) &lt;= horaInicio.getHoras()) {</span>
+<span class="nc" id="L270">            System.out.println(&quot;Hora inválida. Tente de novo:&quot;);</span>
+<span class="nc" id="L271">            fim = input.nextLine();</span>
+        }
+<span class="nc" id="L273">        int horaFim = Integer.parseInt(fim);</span>
+
+<span class="nc" id="L275">        return new Tempo(horaFim);</span>
+    }
+    
+    /**
+     * Permite ao Cliente descrever a tarefa que pretende ver executada 
+     * @return descriçao da tarefa
+     */
+    public String descreverTarefa(){
+        
+<span class="nc" id="L284">        System.out.println(&quot;\nFaça uma breve descrição da tarefa que pretende que seja executada:&quot;);</span>
+<span class="nc" id="L285">        String descricao = input.nextLine();</span>
+        
+<span class="nc" id="L287">        return descricao;</span>
+    }
+    
+    /**
+     * Grava um ficheiro binário onde são serializados os pedidos de prestação de serviço
+     * @param nomeFicheiro nome do ficheiro a ler
+     * @return true, se o ficheiro foi gravado com sucesso
+     *         false, se o ficheiro não foi gravado
+     */
+    public boolean gravarFicheiroBinario(String nomeFicheiro) {
+        try {
+<span class="nc" id="L298">            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(nomeFicheiro));</span>
+            try {
+<span class="nc" id="L300">                out.writeObject(AplicacaoGPSD.empresa.getListaPedidos());</span>
+            } finally {
+<span class="nc" id="L302">                out.close();</span>
+<span class="nc" id="L303">            }</span>
+<span class="nc" id="L304">            return true;</span>
+<span class="nc" id="L305">        } catch (IOException ex) {</span>
+<span class="nc" id="L306">            System.out.println(&quot;Não foi possível gravar no ficheiro de Pedidos de Prestação de Serviço.&quot;);</span>
+<span class="nc" id="L307">            ex.printStackTrace();</span>
+<span class="nc" id="L308">            System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L309">            return false;</span>
+        }
+    }
+    
+    /**
+     * Permite ao Cliente escolher o Endereço em que deseja que o seu pedido seja executado
+     * @param loginEmail e-mail do Cliente
+     * @return Endereço que o cliente deseja que o seu pedido seja executado
+     */
+    public EnderecoPostal escolherEnderecoParaPrestacao(String loginEmail){
+        
+<span class="nc" id="L320">        AplicacaoGPSD.empresa.getClienteByEmail(loginEmail).listarEnderecos();</span>
+<span class="nc" id="L321">        String escolhaDeEndereco = input.nextLine();</span>
+        
+<span class="nc bnc" id="L323" title="All 4 branches missed.">        if(isNumeric(escolhaDeEndereco) == false || AplicacaoGPSD.empresa.getClienteByEmail(loginEmail).getEnderecoByNumero(Integer.parseInt(escolhaDeEndereco)) == null){</span>
+          do{
+<span class="nc" id="L325">          System.out.println(&quot;\nInsira um valor referente a um endereço válido.&quot;);</span>
+<span class="nc" id="L326">          escolhaDeEndereco = input.nextLine();</span>
+<span class="nc bnc" id="L327" title="All 4 branches missed.">          } while(isNumeric(escolhaDeEndereco) == false || AplicacaoGPSD.empresa.getClienteByEmail(loginEmail).getEnderecoByNumero(Integer.parseInt(escolhaDeEndereco)) == null);</span>
+        }
+        
+<span class="nc" id="L330">        int escolha = Integer.parseInt(escolhaDeEndereco);</span>
+<span class="nc" id="L331">        return AplicacaoGPSD.empresa.getClienteByEmail(loginEmail).getEnderecoByNumero(escolha);</span>
+    }
+    
+    /**
+     * Permite ao Cliente adicionar um endereço à sua ficha de Cliente de modo a poder fazer pedidos para o mesmo
+     * @param loginEmail e-mail do Cliente
+     * @return mensagem de sucesso da operação
+     */
+    public void adicionarEndereco(String loginEmail){
+<span class="nc" id="L340">        System.out.println(&quot;\nAdicionar endereço:\n------------------------------&quot;);</span>
+        
+<span class="nc" id="L342">        System.out.println(&quot;Insira a morada:&quot;);</span>
+<span class="nc" id="L343">        String morada = input.nextLine();</span>
+        
+<span class="nc" id="L345">        System.out.println(&quot;\nInsira a localidade:&quot;);</span>
+<span class="nc" id="L346">        String localidade = input.nextLine();</span>
+        
+<span class="nc" id="L348">        System.out.println(&quot;\nInsira o código-postal:&quot;);</span>
+<span class="nc" id="L349">        String codPostal = input.nextLine();</span>
+        
+<span class="nc" id="L351">        System.out.println(&quot;\nInsira a latitude do código-postal:&quot;);</span>
+<span class="nc" id="L352">        String latitude = input.nextLine();</span>
+        
+<span class="nc" id="L354">        System.out.println(&quot;\nInsira a longitude do código-postal:&quot;);</span>
+<span class="nc" id="L355">        String longitude = input.nextLine();</span>
+        
+<span class="nc" id="L357">        System.out.println(&quot;\nConfirme o endereço que está prestes a adicionar:(S/N)\n&quot; +morada+ &quot;/&quot; +localidade+ &quot;/&quot; +codPostal);</span>
+<span class="nc" id="L358">        String resposta = input.nextLine();</span>
+        
+<span class="nc bnc" id="L360" title="All 2 branches missed.">        if(resposta.equalsIgnoreCase(&quot;s&quot;)){</span>
+            
+<span class="nc" id="L362">            EnderecoPostal novoEndereco = new EnderecoPostal(morada, localidade, new CodigoPostal(codPostal, latitude, longitude));</span>
+            
+<span class="nc" id="L364">            AplicacaoGPSD.empresa.getClienteByEmail(loginEmail).adicionarEndereco(novoEndereco);</span>
+<span class="nc" id="L365">            System.out.println(&quot;\nO endereço foi adicionado com sucesso.\n&quot;);</span>
+            
+<span class="nc" id="L367">            MenuCliente m = new MenuCliente();</span>
+<span class="nc" id="L368">            m.loop(loginEmail);</span>
+            
+<span class="nc bnc" id="L370" title="All 2 branches missed.">        }else if(resposta.equalsIgnoreCase(&quot;n&quot;)){</span>
+            
+<span class="nc" id="L372">            MenuCliente m = new MenuCliente();</span>
+<span class="nc" id="L373">            m.loop(loginEmail);</span>
+            
+<span class="nc" id="L375">        }else{</span>
+<span class="nc" id="L376">            System.out.println(&quot;\n\nInseriu uma resposta inválida. Por favor efetue novamente a associação de um endereço e certifique-se que insere uma resposta válida.\n\n&quot;);</span>
+<span class="nc" id="L377">            MenuCliente m = new MenuCliente();</span>
+<span class="nc" id="L378">            m.loop(loginEmail);</span>
+        }
+<span class="nc" id="L380">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
