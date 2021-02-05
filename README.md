@@ -1,4 +1,4 @@
-# ISEP-PPROG-2018
+# ISEP-PPROG-2018/19
 
 Resolução dos trabalhos práticos e do projeto final da unidade curricular Paradigmas da Programação.
 
